@@ -1,4 +1,4 @@
-# SEA Cinema Tix
+# Cinema Tix
 
 ## Description
 
