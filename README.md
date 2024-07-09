@@ -8,4 +8,4 @@ The SEA Cinema Tix is a movie ticket booking web application developed to enhanc
 
 ## Database Schema
 
-This project uses a MySQL database to store and manage data. Check out the database schema [here](https://dbdocs.io/bagashiz/sea_cinema_tix), powered by [dbdocs.io](https://dbdocs.io/).
+This project uses a MySQL database to store and manage data powered by [dbdocs.io](https://dbdocs.io/).
