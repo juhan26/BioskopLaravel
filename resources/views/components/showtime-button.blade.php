@@ -1,7 +1,7 @@
-@props(['movie', 'date', 'showtime', 'currentDate', 'currentTime'])
+@props(['showtime', 'movie', 'date', 'currentDate', 'currentTime'])
 
 @php
-    // date formatting
+    // Date and time formatting and logic
     $formattedDate = $date->date->format('Y-m-d');
     $isToday = $formattedDate == $currentDate;
     $isPastDate = $formattedDate < $currentDate;

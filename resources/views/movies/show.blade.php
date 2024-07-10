@@ -15,9 +15,9 @@
                     {{ $movie->description }}
                 </p>
                 <div class="flex justify-between">
-                    {{-- <div>
+                    <div>
                         <a href="{{ route('movies.edit', $movie->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </div> --}}
+                    </div>
                     <div>
                         <form action="{{ route('movies.destroy', $movie->id) }}" method="POST">
                             @csrf

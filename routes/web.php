@@ -14,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
+
+Route::resource('movies', MovieController::class);
+
 Route::get('/', [MovieController::class, 'index'])->name('home');
-Route::get('/movies/show/{movie}', [MovieController::class, 'show'])->name('movies.show');
-Route::delete('/movies/{movie}', 'App\Http\Controllers\MovieController@destroy')->name('movies.destroy');
+// Route::get('/movies/show/{movie}', [MovieController::class, 'show'])->name('movies.show');
+// Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+// Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
+// Route::put('/movies/show/{movie}', [MovieController::class, 'update'])->name('movies.update');
+
 
 
 Route::middleware('guest')->group(function () {
@@ -41,6 +48,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/movies/{movie}/book/{date}/{showtime}', [BookingController::class, 'create'])->name('bookings.create');
     Route::post('/movies/{movie}/book/{date}/{showtime}', [BookingController::class, 'store'])->name('bookings.store');
+    
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
     Route::get('/bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
     Route::patch('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update');

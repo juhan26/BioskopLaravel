@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -77,6 +78,36 @@ class MovieController extends Controller
 
         return view('movies.show', compact('movie', 'currentDate', 'currentTime'));
     }
+
+    public function edit(Movie $movie)
+{
+    return view('movies.edit', compact('movie'));
+}
+
+public function update(Request $request, Movie $movie)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'poster_url' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // contoh validasi untuk gambar
+        // tambahkan validasi lain sesuai kebutuhan
+    ]);
+
+    if ($request->hasFile('poster_url')) {
+        Storage::disk('public')->delete($movie->poster_url); //buat ngehapus image sebelumnya
+        $posterPath = $request->file('poster_url')->store('posters', 'public');
+        $movie->poster_url = $posterPath;
+    }
+
+    $movie->title = $request->title;
+    $movie->description = $request->description;
+
+
+    $movie->save();
+
+    return redirect()->route('movies.show', $movie->id)->with('success', 'Movie updated successfully.');
+}
+
 
     public function destroy(Movie $movie)
 {
