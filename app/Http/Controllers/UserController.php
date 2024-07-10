@@ -158,7 +158,7 @@ class UserController extends Controller
             $user->increment('balance', $request->amount);
         }
 
-        $user->update();
+        $user->save();
 
         return redirect()
             ->route('profile')
