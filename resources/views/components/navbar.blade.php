@@ -18,29 +18,25 @@
         </button>
         <div class="hidden w-full" id="navbar-hamburger">
             @if (Route::has('login'))
-                <ul
-                    class="flex flex-col font-medium mt-4 rounded-lg bg-primary-500 dark:bg-gray-800 dark:border-gray-700">
+                <ul class="flex flex-col font-medium mt-4 rounded-lg bg-primary-500 dark:bg-gray-800 dark:border-gray-700">
                     @auth
-                        <li>
+                        <li class="my-2">
                             <a href="{{ route('profile') }}"
-                                class="font-bold text-lg text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white flex items-center">
-                                <span class="mr-2">
-                                    {{ auth()->user()->username }}
-                                </span>
+                                class="flex items-center text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
+                                <span class="font-bold">{{ auth()->user()->username }}</span>
                                 <span
-                                    class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                    class="ml-2 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                                     Balance: Rp {{ number_format(auth()->user()->balance) }}
                                 </span>
                             </a>
                         </li>
-                        <hr class="my-2 border-gray-200">
-                        <li>
+                        <li class="my-2">
                             <a href="{{ route('bookings.index') }}"
                                 class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
                                 Bookings
                             </a>
                         </li>
-                        <li>
+                        <li class="my-2">
                             <form method="POST" action="{{ route('logout') }}" class="inline">
                                 @csrf
                                 <button type="submit"
@@ -49,15 +45,21 @@
                                 </button>
                             </form>
                         </li>
+                        <li class="my-2">
+                            <a href="{{ route('movies.create') }}"
+                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
+                                Create Movies
+                            </a>
+                        </li>
                     @else
-                        <li>
+                        <li class="my-2">
                             <a href="{{ route('login') }}"
                                 class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
                                 Log in
                             </a>
                         </li>
                         @if (Route::has('register'))
-                            <li>
+                            <li class="my-2">
                                 <a href="{{ route('register') }}"
                                     class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
                                     Register
@@ -67,6 +69,6 @@
                     @endauth
                 </ul>
             @endif
-
         </div>
+    </div>
 </nav>

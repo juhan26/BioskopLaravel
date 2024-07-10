@@ -13,6 +13,11 @@
     </section>
 
     <section id="movie-list" class="p-6 mx-auto max-w-7xl lg:p-8">
+        <div class="flex justify-end mb-4">
+            <a href="{{ route('movies.create') }}" class="px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Create Movie
+            </a>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($movies as $movie)
                 <x-movie-card :movie="$movie" />
