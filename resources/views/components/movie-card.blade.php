@@ -1,7 +1,7 @@
 <div
     class="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
     <a href="{{ route('movies.show', $movie->id) }}">
-        <img class="rounded-t-lg" src="{{ $movie->poster_url }}" alt="{{ $movie->title }}" />
+        <img class="rounded-t-lg" src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}" />
     </a>
     <div class="p-5">
         <a href="{{ route('movies.show', $movie->id) }}">

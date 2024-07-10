@@ -22,7 +22,7 @@
                         <form action="{{ route('movies.destroy', $movie->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="confirm('Apakah yakin ingin menghapus data ini?')">Delete</button>
                         </form>
                     </div>
                 </div>
