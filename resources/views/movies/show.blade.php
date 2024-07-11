@@ -31,7 +31,7 @@
     </section>
 
     {{-- Dates and showtimes list --}}
-    <section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
+    {{-- <section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-4 text-center">
                 Dates and Showtimes
@@ -47,5 +47,5 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

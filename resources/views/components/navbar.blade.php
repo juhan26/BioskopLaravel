@@ -30,10 +30,28 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="my-2">
+                        {{-- <li class="my-2">
                             <a href="{{ route('bookings.index') }}"
                                 class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
                                 Bookings
+                            </a>
+                        </li> --}}
+                        <li class="my-2">
+                            <a href="{{ route('showtimes.index') }}"
+                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
+                                Showtimes
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="{{ route('date.index') }}"
+                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
+                                Dates
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="{{ route('dateshowtime.index') }}"
+                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
+                                Date Showtimes
                             </a>
                         </li>
                         <li class="my-2">
@@ -45,12 +63,12 @@
                                 </button>
                             </form>
                         </li>
-                        <li class="my-2">
+                        {{-- <li class="my-2">
                             <a href="{{ route('movies.create') }}"
                                 class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
                                 Create Movies
                             </a>
-                        </li>
+                        </li> --}}
                     @else
                         <li class="my-2">
                             <a href="{{ route('login') }}"
