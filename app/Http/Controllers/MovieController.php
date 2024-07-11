@@ -46,7 +46,7 @@ class MovieController extends Controller
     ]);
 
     $imagePath = $request->file('poster_url')->store('posters', 'public');
-
+    
     $movie = new Movie([
         'title' => $request->get('title'),
         'description' => $request->get('description'),
@@ -56,7 +56,8 @@ class MovieController extends Controller
         'age_rating' => $request->get('age_rating'),
         'ticket_price' => $request->get('ticket_price'),
     ]);
-
+    
+    // dd($imagePath);
     $movie->save();
 
     return redirect()->route('home')->with('success', 'Movie created successfully.');
@@ -106,7 +107,7 @@ public function update(Request $request, Movie $movie)
 
     $movie->save();
 
-    return redirect()->route('movies.show', $movie->id)->with('success', 'Movie updated successfully.');
+    return redirect()->route('movies.index', $movie->id)->with('success', 'Movie updated successfully.');
 }
 
 

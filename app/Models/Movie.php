@@ -42,20 +42,20 @@ class Movie extends Model
      *
      * @return BelongsToMany
      */
-    public function dates(): BelongsToMany
-    {
-        return $this->belongsToMany(Date::class, 'date_movie');
-    }
+    // public function date_movies()
+    // {
+    //     return $this->belongsTo(DateMovie::class, 'date_movie');
+    // }
 
     /**
      * One to many relation to Booking model.
      *
      * @return HasMany
      */
-    public function bookings(): HasMany
-    {
-        return $this->hasMany(Booking::class);
-    }
+    // public function bookings(): HasMany
+    // {
+    //     return $this->hasMany(Booking::class);
+    // }
 
     /**
      * scopeFilter defines filter that used in query.
