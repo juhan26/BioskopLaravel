@@ -22,7 +22,7 @@
                         <form action="{{ route('movies.destroy', $movie->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="confirm('Apakah yakin ingin menghapus data ini?')">Delete</button>
+                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Apakah yakin ingin menghapus data ini?')">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -30,8 +30,10 @@
         </div>
     </section>
 
+
     {{-- Dates and showtimes list --}}
-    {{-- <section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
+  <section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
+
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-4 text-center">
                 Dates and Showtimes
@@ -39,11 +41,14 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach ($movie->dates as $date)
-                    <x-date-card :date="$date">
-                        @foreach ($date->showtimes as $showtime)
-                            <x-showtime-button :showtime="$showtime" :movie="$movie" :date="$date" :currentDate="$currentDate" :currentTime="$currentTime" />
-                        @endforeach
-                    </x-date-card>
+                    <div class="border rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-2">{{ $date->date->format('D, d M Y') }}</h3>
+                        <ul>
+                            @foreach ($date->showtimes as $showtime)
+                                <x-showtime-button :showtime="$showtime" :movie="$movie" :date="$date" :currentDate="$currentDate" :currentTime="$currentTime" />
+                            @endforeach
+                        </ul>
+                    </div>
                 @endforeach
             </div>
         </div>
