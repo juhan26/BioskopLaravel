@@ -69,7 +69,7 @@
                                 class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
                                 Movies
                             </a>
-                        </li> --}}
+                        </li> 
                     @else
                         <li class="my-2">
                             <a href="{{ route('login') }}"

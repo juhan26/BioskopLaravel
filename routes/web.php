@@ -54,13 +54,15 @@ Route::middleware('auth')->group(function () {
     // Route::get('/bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
     // Route::patch('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update');
 
-    //Showtimes(Sano)
+    // Showtimes(Sano)
     Route::get('/showtimes', [App\Http\Controllers\ShowtimeController::class, 'index'])->name('showtimes.index');
     Route::get('/showtimes/create', [App\Http\Controllers\ShowtimeController::class, 'create'])->name('showtimes.create');
     Route::post('/showtimes', [App\Http\Controllers\ShowtimeController::class,'store'])->name('showtimes.store');
     Route::get('/showtimes/edit/{showtime}', [App\Http\Controllers\ShowtimeController::class, 'edit'])->name('showtimes.edit');
     Route::put('/showtimes/update/{showtime}', [App\Http\Controllers\ShowtimeController::class, 'update'])->name('showtimes.update');
     Route::delete('/showtimes/destroy/{showtime}', [App\Http\Controllers\ShowtimeController::class, 'destroy'])->name('showtimes.destroy');
+
+
 
     //Date(Sano)
     Route::get('/date',[App\Http\Controllers\DateController::class, 'index'])->name('date.index');
