@@ -16,14 +16,12 @@ class Date extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'date',
-    ];
+    protected $fillable = ['date'];
 
-    public function dateshowtimes(){
+    public function dateshowtimes()
+    {
         return $this->hasMany(Dateshowtime::class);
     }
-
     public function getDateAttribute($value)
     {
         return Carbon::parse($value)->format('Y-m-d');

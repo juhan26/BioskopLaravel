@@ -17,9 +17,6 @@
                     <th scope="col" class="px-6 py-3">
                        Showtime
                     </th>
-                    {{-- <th scope="col" class="px-6 py-3">
-                        End Showtime
-                    </th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -29,26 +26,15 @@
                         {{ $index + 1 }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ $dateshowtime->dates->date }}
+                        {{ $dateshowtime->date->date ?? 'No date found' }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $dateshowtime->showtimes->start_time }}
-                    </td>
-                    {{-- <td class="px-6 py-4">
-                        {{ $dateshowtime->showtimes->end_time }}
-                    </td> --}}
-                    <td class="px-6 py-4 flex space-x-2">
-                        <a href="{{ url("/date/edit", $date->id) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 dark:focus:ring-yellow-900">Edit</a>
-                        <form action="{{ route("date.destroy", $date->id) }}" method="POST" class="delete-form">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</button>
-                        </form>
+                        {{ $dateshowtime->showtime->start_time ?? 'No showtime found' }}
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="4" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No date Found.</td>
+                    <td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No date Found.</td>
                 </tr>
                 @endforelse
             </tbody>

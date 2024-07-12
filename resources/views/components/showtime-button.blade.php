@@ -1,7 +1,6 @@
 @props(['showtime', 'movie', 'date', 'currentDate', 'currentTime'])
 
 @php
-    // Date and time formatting and logic
     $formattedDate = $date->date->format('Y-m-d');
     $isToday = $formattedDate == $currentDate;
     $isPastDate = $formattedDate < $currentDate;
@@ -19,3 +18,4 @@
         </button>
     </a>
 </li>
+    

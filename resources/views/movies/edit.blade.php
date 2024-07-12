@@ -21,8 +21,14 @@
 
                 <div class="mb-4">
                     <label for="poster_url" class="block text-sm font-medium text-gray-700">Poster</label>
+                    @if(isset($movie) && $movie->poster_url)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="Current Poster" class="h-32 w-auto mb-4">
+                    </div>
+                @endif
                     <input type="file" name="poster_url" id="poster_url" class="mt-1 block ml-4 pr-5 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" value="{{ old('poster_url') }}">
-                </div>                
+                </div>
+                
 
                 <div class="mb-4">
                     <label for="release_date" class="block text-sm font-medium text-gray-700">Release Date</label>
