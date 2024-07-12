@@ -1,4 +1,4 @@
-<nav class="border-gray-200 bg-primary-500 border shadow-lg">
+<nav class="border-gray-200 bg-sky-700 border shadow-lg">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <h1>
             <a href="{{ route('home') }}"
@@ -7,7 +7,7 @@
             </a>
         </h1>
         <button data-collapse-toggle="navbar-hamburger" type="button"
-            class="inline-flex items-center p-2 ml-3 text-sm text-gray-50 rounded-lg hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            class="inline-flex items-center p-2 ml-3 text-sm text-gray-50 rounded-lg hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-hamburger" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -18,7 +18,7 @@
         </button>
         <div class="hidden w-full" id="navbar-hamburger">
             @if (Route::has('login'))
-                <ul class="flex flex-col font-medium mt-4 rounded-lg bg-primary-500 dark:bg-gray-800 dark:border-gray-700">
+                <ul class="flex flex-col font-medium mt-4 rounded-lg  bg-sky-700 dark:bg-gray-800 dark:border-gray-700">
                     @auth
                         <li class="my-2">
                             <a href="{{ route('profile') }}"
@@ -58,7 +58,7 @@
                             <form method="POST" action="{{ route('logout') }}" class="inline">
                                 @csrf
                                 <button type="submit"
-                                    class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
+                                    class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-sky-700">
                                     Log out
                                 </button>
                             </form>
@@ -66,21 +66,21 @@
 
                         <li class="my-2">
                             <a href="{{ route('home') }}"
-                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
+                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-sky-700">
                                 Movies
                             </a>
                         </li> 
                     @else
                         <li class="my-2">
                             <a href="{{ route('login') }}"
-                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
+                                class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-sky-700">
                                 Log in
                             </a>
                         </li>
                         @if (Route::has('register'))
                             <li class="my-2">
                                 <a href="{{ route('register') }}"
-                                    class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-rose-500">
+                                    class="font-semibold text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-sky-700">
                                     Register
                                 </a>
                             </li>
