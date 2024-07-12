@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDateshowtimeRequest;
 use App\Http\Requests\UpdateDateshowtimeRequest;
 use App\Models\Date;
+use App\Models\Movie;
 use App\Models\Showtime;
 use Illuminate\Database\QueryException;
 
@@ -28,7 +29,8 @@ class DateshowtimeController extends Controller
     {
         $dates = Date::all();
         $showtimes = Showtime::all();
-        return view('dateshowtimes.create', compact('dates','showtimes'));
+        $movies = Movie::all();
+        return view('dateshowtimes.create', compact('dates','showtimes','movies'));
     }
 
     /**
@@ -55,7 +57,8 @@ class DateshowtimeController extends Controller
     {
         $dates = Date::all();
         $showtimes = Showtime::all();
-        return view('dateshowtime.edit', compact('dateshowtime','dates','showtimes'));
+        $movies = Movie::all();
+        return view('dateshowtimes.edit', compact('dateshowtime','dates','showtimes', 'movies'));
     }
 
     /**

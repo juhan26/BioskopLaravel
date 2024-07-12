@@ -12,6 +12,9 @@
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Movie
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Date
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -26,10 +29,21 @@
                         {{ $index + 1 }}
                     </th>
                     <td class="px-6 py-4">
+                        {{ $dateshowtime->movies->title ?? 'No movie found' }}
+                    </td>
+                    <td class="px-6 py-4">
                         {{ $dateshowtime->date->date ?? 'No date found' }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $dateshowtime->showtime->start_time ?? 'No showtime found' }}
+                        {{ $dateshowtime->showtime->start_time }} - {{ $dateshowtime->showtime->end_time }}
+                    </td>
+                    <td class="px-6 py-4 flex space-x-2">
+                        <a href="{{ url("/dateshowtime/edit", $dateshowtime->id) }}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 dark:focus:ring-yellow-900">Edit</a>
+                        <form action="{{ route("dateshowtime.destroy", $dateshowtime->id) }}" method="POST" class="delete-form">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @empty

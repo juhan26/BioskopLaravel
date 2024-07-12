@@ -22,6 +22,7 @@ class StoreDateshowtimeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'movie_id'=> ['required', 'exists:movies,id'],
             'date_id'=> ['required', 'exists:dates,id'],
             'showtime_id'=> ['required', 'exists:showtimes,id'],
         ];
