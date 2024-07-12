@@ -6,7 +6,7 @@
             <h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
                 Booking Details
             </h2>
-            <form action="{{ route('bookings.store', [$movie, $date, $showtime]) }}" method="POST">
+            <form action="{{ route('bookings.store', [$movie, $dateShowtime]) }}" method="POST">
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">
@@ -23,7 +23,7 @@
                         </label>
                         <input type="text" name="date" id="date" aria-label="date"
                             class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400"
-                            value="{{ $date->date->format('D, j M Y') }}" disabled readonly>
+                            value="{{ $dateShowtime->date->format('D, j M Y') }}" disabled readonly>
                     </div>
                     <div class="w-full">
                         <label for="showtime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -31,7 +31,7 @@
                         </label>
                         <input type="text" name="showtime" id="showtime" aria-label="showtime"
                             class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400"
-                            value="{{ $showtime->start_time }} - {{ $showtime->end_time }}" disabled readonly>
+                            value="{{ $dateShowtime->start_time }} - {{ $dateShowtime->end_time }}" disabled readonly>
                     </div>
                 </div>
 
@@ -43,9 +43,9 @@
                                 <input type="checkbox" name="seats[]" id="seat{{ $seat->id }}"
                                     value="{{ $seat->id }}"
                                     class="form-checkbox h-4 w-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500"
-                                    {{ $seat->isBooked($movie, $date, $showtime) ? 'disabled' : '' }}>
+                                    {{ $seat->isBooked($movie, $dateShowtime) ? 'disabled' : '' }}>
                                 <span
-                                    class="lg:ml-2 {{ $seat->isBooked($movie, $date, $showtime) ? 'text-red-500' : 'text-gray-900 dark:text-white' }}">
+                                    class="lg:ml-2 {{ $seat->isBooked($movie, $dateShowtime) ? 'text-red-500' : 'text-gray-900 dark:text-white' }}">
                                     {{ $seat->seat_number }}
                                 </span>
                             </label>

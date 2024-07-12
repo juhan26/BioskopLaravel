@@ -50,9 +50,11 @@ Route::middleware('auth')->group(function () {
     // Route::get('/movies/{movie}/book/{date}/{showtime}', [BookingController::class, 'create'])->name('bookings.create');
     // Route::post('/movies/{movie}/book/{date}/{showtime}', [BookingController::class, 'store'])->name('bookings.store');
     
-    // Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+    // Route::get('/bookings', [BookingController::class, 'create'])->name('bookings.index');   
     // Route::get('/bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show');
     // Route::patch('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update');
+
+    // Route::post('/bookings/{movie}/{date}/{showtime}', [BookingController::class, 'store'])->name('bookings.store');
 
     // Showtimes(Sano)
     Route::get('/showtimes', [App\Http\Controllers\ShowtimeController::class, 'index'])->name('showtimes.index');
