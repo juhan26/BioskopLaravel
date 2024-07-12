@@ -36,7 +36,7 @@ class MovieController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'title' => 'required|string|max:255',
+        'title' => 'required|string|max:255|unique:movies,title',
         'description' => 'required|string',
         'poster_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'release_date' => 'required|date',
