@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dateshowtime extends Model
 {
-    protected $fillable = ['date_id', 'showtime_id'];
+    protected $guarded = ['id'];
 
     public function date()
     {
@@ -16,5 +16,10 @@ class Dateshowtime extends Model
     public function showtime()
     {
         return $this->belongsTo(Showtime::class, 'showtime_id');
+    }
+
+    public function movies()
+    {
+        return $this->belongsTo(Movie::class, 'movie_id');
     }
 }
