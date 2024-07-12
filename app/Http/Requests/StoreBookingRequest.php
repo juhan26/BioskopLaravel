@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDateshowtimeRequest extends FormRequest
+class StoreBookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,7 @@ class StoreDateshowtimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'movie_id'=> ['required', 'exists:movies,id'],
-            'date_id'=> ['required', 'exists:dates,id'],
-            'showtime_id'=> ['required', 'exists:showtimes,id'],
+            ''
         ];
     }
 }

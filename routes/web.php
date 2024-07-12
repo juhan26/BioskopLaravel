@@ -81,4 +81,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/dateshowtime/edit/{dateshowtime}', [App\Http\Controllers\DateshowtimeController::class, 'edit'])->name('dateshowtime.edit');
     Route::put('/dateshowtime/update/{dateshowtime}', [App\Http\Controllers\DateshowtimeController::class, 'update'])->name('dateshowtime.update');
     Route::delete('/dateshowtime/destroy/{dateshowtime}', [App\Http\Controllers\DateshowtimeController::class, 'destroy'])->name('dateshowtime.destroy');
+
+    //Seat(sano)
+    Route::get('/seat', [App\Http\Controllers\SeatController::class, 'index'])->name('seat.index');
+    Route::get('/seat/create', [App\Http\Controllers\SeatController::class, 'create'])->name('seat.create');
+    Route::post('/seat/store', [App\Http\Controllers\SeatController::class,'store'])->name('seat.store');
+    Route::get('/seat/edit/{seat}', [App\Http\Controllers\SeatController::class, 'edit'])->name('seat.edit');
+    Route::put('/seat/update/{seat}', [App\Http\Controllers\SeatController::class, 'update'])->name('seat.update');
+    Route::delete('/seat/destroy/{seat}', [App\Http\Controllers\SeatController::class, 'destroy'])->name('seat.destroy');
+
+    //Bookings(sano)
+    Route::get('/booking', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
+    Route::get('/booking/create', [App\Http\Controllers\BookingController::class, 'create'])->name('booking.create');
+    Route::post('/booking/store', [App\Http\Controllers\BookingController::class,'store'])->name('booking.store');
+    Route::get('/booking/edit/{booking}', [App\Http\Controllers\BookingController::class, 'edit'])->name('booking.edit');
+    Route::put('/booking/update/{booking}', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
+    Route::delete('/booking/destroy/{booking}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
 });
