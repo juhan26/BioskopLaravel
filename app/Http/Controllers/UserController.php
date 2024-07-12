@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -28,7 +29,7 @@ class UserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $formFields = $request->validate([
-            'username' => ['required', 'min:5', 'max:20'],
+            'username' => ['required', 'min:5', 'max:20', 'unique:users,username'],
             'password' => ['required', 'confirmed', 'min:8', 'max:255'],
             'name' => ['required', 'min:5', 'max:50'],
             'age' => ['required', 'integer']
@@ -134,7 +135,7 @@ class UserController extends Controller
     public function update(Request $request, User $user): RedirectResponse
     {
         $request->validate([
-            'username' => ['sometimes', 'required', 'min:5', 'max:20'],
+            'username' => ['sometimes', 'required', 'min:5', 'max:20', Rule::unique('users', 'username')->ignore($user->id)],
             'name' => ['sometimes', 'required', 'min:5', 'max:50'],
             'age' => ['sometimes', 'required', 'integer'],
             'amount' => ['sometimes', 'required', 'integer'],
