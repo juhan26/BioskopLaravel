@@ -37,6 +37,11 @@ class Movie extends Model
         'release_date' => 'date',
     ];
 
+    public function dateshowtimes()
+    {
+        return $this->hasMany(Showtime::class);
+    }
+
     /**
      * Many to many relation to Showtime model.
      *
