@@ -54,7 +54,7 @@
                             <label for="seat_id" class="inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="seat_id" id="seat_id"
                                     value="{{ $seat->id }}"
-                                    class="form-checkbox h-4 w-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500"
+                                    class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700"
                                     >
                                 <span
                                     class="lg:ml-2  ? 'text-red-500' : 'text-gray-900 dark:text-white' }}">
@@ -72,7 +72,7 @@
                 @enderror
 
                 <button type="submit"
-                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-500 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-600">
+                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-sky-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-sky-800">
                     Book Now
                 </button>
             </form>

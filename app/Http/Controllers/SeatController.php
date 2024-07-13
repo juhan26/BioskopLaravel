@@ -32,6 +32,8 @@ class SeatController extends Controller
      */
     public function store(StoreSeatRequest $request)
     {
+        $selectedSeats = $request->input('seat_id');
+
         Seat::create($request->all());
         return redirect()->route('seat.index')->with('success','Seat Successfully Created');
     }

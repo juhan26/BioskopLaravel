@@ -17,8 +17,9 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::with('movie')->get();
+        $seats = Seat::all();
         // dd($bookings->pluck('movie'));
-        return view('bookings.index', compact('bookings'));
+        return view('bookings.index', compact('bookings', 'seats'));
     }
 
     /**
@@ -32,7 +33,7 @@ class BookingController extends Controller
 
         // dd($movies);
 
-        return view('bookings.create', compact('movies','dateshowtimes','seats'));
+        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats'));
     }
 
     /**
@@ -40,8 +41,9 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        Booking::create($request->all());
+        $booking = Booking::create($request->all());
         // dd($request->all());
+
         return redirect()->route('booking.index')->with('success', 'Booking created successfully.');
     }
 
@@ -72,8 +74,15 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Booking $booking)
+    public function destroy($id)
     {
-        //
+        $booking = Booking::find($id);
+
+        if ($booking) {
+            $booking->delete();
+            return redirect()->route('booking.index')->with('success', 'Booking cancelled successfully.');
+        }
+
+        return redirect()->route('booking.index')->with('error', 'Booking not found.');
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
     protected $fillable = ['movie_id', 'seat_id', 'dateshowtime_id'];
 
     public function seats(){
