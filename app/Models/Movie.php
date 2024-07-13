@@ -42,6 +42,11 @@ class Movie extends Model
         return $this->hasMany(Showtime::class);
     }
 
+    // public function bookings()
+    // {
+    //     return $this->hasOne(Booking::class);
+    // }
+
     /**
      * Many to many relation to Showtime model.
      *

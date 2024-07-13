@@ -6,14 +6,14 @@
             <h2 class="text-2xl font-bold mb-6">Create Date Showtimes</h2>
             <form action="{{ route('dateshowtime.store') }}" method="POST">
                 @csrf  
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <label for="movie_id" class="block text-sm font-medium text-gray-700">Movie</label>
                     <select name="movie_id" id="movie_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         @foreach($movies as $movie)
                             <option value="{{ $movie->id }}">{{ $movie->title }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
 
                 <div class="mb-4">
                     <label for="date_id" class="block text-sm font-medium text-gray-700">Date</label>
@@ -35,7 +35,7 @@
                     </select>
                 </div>               
                 <div class="flex justify-end">
-                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Create Movie</button>
+                    <button type="submit" class="px-4 py-2 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2">Create Movie</button>
                 </div>
             </form>
         </div>

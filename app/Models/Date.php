@@ -24,7 +24,7 @@ class Date extends Model
     }
     public function getDateAttribute($value)
     {
-        return Carbon::parse($value)->format('Y-m-d');
+        return Carbon::parse($value)->format('l, j F Y');
     }
 
     /**
