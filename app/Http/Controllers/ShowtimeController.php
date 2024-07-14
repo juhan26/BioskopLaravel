@@ -71,7 +71,7 @@ class ShowtimeController extends Controller
             return redirect()->route('showtimes.index')->with('success', 'Showtime deleted successfully.');
         }catch(QueryException $e){
             if($e->getCode() === "23000"){
-                return redirect()->route('showtimes.index')->with('error', 'Showtime could not be delete because has in Date_showtime');
+                return redirect()->route('showtimes.index')->with('error', 'Showtime could not be delete because has in Date Showtime');
             }
         }
     }

@@ -25,4 +25,11 @@ class StoreSeatRequest extends FormRequest
             'seat_number' => 'required|unique:seats,seat_number'
         ];
     }
+    public function messages()
+    {
+        return [
+            'required' => 'Attribute wajib diisi.',
+            'unique' => 'Attribute sudah ada.',
+        ];
+    }
 }

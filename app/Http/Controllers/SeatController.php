@@ -73,7 +73,7 @@ class SeatController extends Controller
             return redirect()->route('seat.index')->with('success', 'Seat deleted successfully.');
         }catch(QueryException $e){
             if($e->getCode() === "23000"){
-                return redirect()->route('seat.index')->with('error', 'Seat could not be delete because has in Date_showtime');
+                return redirect()->route('seat.index')->with('error', 'Seat could not be delete because has in Bookings');
             }
         }
     }
