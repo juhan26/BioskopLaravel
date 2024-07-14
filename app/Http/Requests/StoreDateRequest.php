@@ -25,4 +25,12 @@ class StoreDateRequest extends FormRequest
             'date' => ['required', 'unique:dates,date']
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => 'Field :attribute wajib diisi.',
+            'unique' => 'Field :attribute sudah ada di database dan harus unik.',
+        ];
+    }
 }

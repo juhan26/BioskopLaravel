@@ -27,4 +27,11 @@ class UpdateDateRequest extends FormRequest
             'date' => ['required', Rule::unique('dates', 'date')->ignore($dateId)],
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Field :attribute wajib diisi.',
+            'unique' => 'Field :attribute sudah ada di database dan harus unik.',
+        ];
+    }
 }

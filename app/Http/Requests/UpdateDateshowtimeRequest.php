@@ -26,4 +26,11 @@ class UpdateDateshowtimeRequest extends FormRequest
             'showtime_id'=> ['required', 'exists:showtimes,id'],
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Attribute wajib diisi.',
+            'exists' => 'Attribute tidak valid.',
+        ];
+    }
 }
