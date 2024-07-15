@@ -22,7 +22,17 @@ class StoreBookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            ''
+            'movie_id'=>['required','exists:movies,id'],
+            'dateshowtime_id'=>['required','exists:dateshowtimes,id'],
+            'seat_id'=>['required','exists:seats,id'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Field :attribute wajib diisi.',
+            'exists' => 'Field :attribute tidak valid.',
         ];
     }
 }

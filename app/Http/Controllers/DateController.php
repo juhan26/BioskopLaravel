@@ -73,7 +73,7 @@ class DateController extends Controller
             return redirect()->route('date.index')->with('success', 'Date deleted successfully.');
         }catch(QueryException $e){
             if($e->getCode() === "23000"){
-                return redirect()->route('date.index')->with('error', 'Date could not be delete because has in Date_showtime');
+                return redirect()->route('date.index')->with('error', 'Date could not be delete because has in Date Showtime');
             }
         }
     }

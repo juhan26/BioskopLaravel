@@ -27,4 +27,11 @@ class UpdateShowtimeRequest extends FormRequest
             'end_time' => ['required',Rule::unique('showtimes', 'end_time')->ignore($this->showtime->id)]
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Field :attribute wajib diisi.',
+            'unique' => 'Field :attribute sudah ada di database dan harus unik.',
+        ];
+    }
 }

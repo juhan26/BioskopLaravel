@@ -26,4 +26,11 @@ class UpdateSeatRequest extends FormRequest
             'seat_number' => ['required', 'max-length:3', Rule::unique('seats','seat_number')->ignore($this->seat->id)]
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Field :attribute wajib diisi.',
+            'unique' => 'Field :attribute sudah ada di database dan harus unik.',
+        ];
+    }
 }

@@ -26,4 +26,11 @@ class StoreShowtimeRequest extends FormRequest
             'end_time' => ['required','unique:showtimes,end_time']
         ];
     }
+    public function messages()
+    {
+        return [
+            'required' => 'Attribute wajib diisi.',
+            'unique' => 'Attribute sudah ada.',
+        ];
+    }
 }

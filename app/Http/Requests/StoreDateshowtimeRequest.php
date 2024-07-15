@@ -27,4 +27,11 @@ class StoreDateshowtimeRequest extends FormRequest
             'showtime_id'=> ['required', 'exists:showtimes,id'],
         ];
     }
+    public function messages()
+    {
+        return [
+            'required' => 'Field :attribute wajib diisi.',
+            'exists' => 'Field :attribute tidak valid.',
+        ];
+    }
 }
