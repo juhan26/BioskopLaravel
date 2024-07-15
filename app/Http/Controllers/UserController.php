@@ -96,7 +96,7 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()
-            ->route('home')
+            ->route('login')
             ->with('success', 'You have been logged out!');
     }
 

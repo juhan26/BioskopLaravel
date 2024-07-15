@@ -11,12 +11,12 @@
 
                 <div class="mb-4">
                     <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                    <input type="text" name="title" id="title" value="{{ old('title', $movie->title) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                    <input type="text" name="title" id="title" value="{{ old('title', $movie->title) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>
 
                 <div class="mb-4">
                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" id="description" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>{{ old('description', $movie->description) }}</textarea>
+                    <textarea name="description" id="description" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >{{ old('description', $movie->description) }}</textarea>
                 </div>
 
                 <div class="mb-4">
@@ -32,22 +32,22 @@
 
                 <div class="mb-4">
                     <label for="release_date" class="block text-sm font-medium text-gray-700">Release Date</label>
-                    <input type="date" name="release_date" id="release_date" value="{{ old('release_date', $movie->release_date->format('Y-m-d')) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                    <input type="date" name="release_date" id="release_date" value="{{ old('release_date', $movie->release_date->format('Y-m-d')) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>
 
                 <div class="mb-4">
                     <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
-                    <input type="text" name="genre" id="genre" value="{{ old('genre', $movie->genre) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                    <input type="text" name="genre" id="genre" value="{{ old('genre', $movie->genre) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>
 
                 <div class="mb-4">
                     <label for="age_rating" class="block text-sm font-medium text-gray-700">Age Rating</label>
-                    <input type="text" name="age_rating" id="age_rating" value="{{ old('age_rating', $movie->age_rating) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                    <input type="text" name="age_rating" id="age_rating" value="{{ old('age_rating', $movie->age_rating) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>
 
                 <div class="mb-4">
                     <label for="ticket_price" class="block text-sm font-medium text-gray-700">Ticket Price</label>
-                    <input type="number" name="ticket_price" id="ticket_price" value="{{ old('ticket_price', $movie->ticket_price) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                    <input type="number" name="ticket_price" id="ticket_price" value="{{ old('ticket_price', $movie->ticket_price) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>                
 
                 <div class="flex justify-end">
