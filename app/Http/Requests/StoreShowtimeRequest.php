@@ -29,8 +29,8 @@ class StoreShowtimeRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Attribute wajib diisi.',
-            'unique' => 'Attribute sudah ada.',
+            'required' => 'Field :attribute wajib diisi.',
+            'unique' => 'Field :attribute sudah ada.',
         ];
     }
 }

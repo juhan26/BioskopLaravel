@@ -89,11 +89,20 @@ class MovieController extends Controller
 
 public function update(Request $request, Movie $movie)
 {
+
+    $customMessages = [
+        '*.required' => 'Field :attribute wajib diisi.',
+        '*.string' => 'Field :attribute harus berupa string.',
+        '*.max' => 'Field :attribute tidak boleh lebih dari :max karakter.',
+        '*.image' => 'Field :attribute harus berupa gambar.',
+        '*.mimes' => 'Field :attribute harus memiliki tipe: :values.',
+    ];
+
     $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
         'poster_url' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
+    ],$customMessages);
 
     if ($request->hasFile('poster_url')) {
         Storage::disk('public')->delete($movie->poster_url); //buat ngehapus image sebelumnya
