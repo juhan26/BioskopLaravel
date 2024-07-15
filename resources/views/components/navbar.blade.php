@@ -24,10 +24,10 @@
                             <a href="{{ route('profile') }}"
                                 class="flex items-center text-gray-50 hover:text-gray-200 focus:outline focus:outline-2 focus:rounded-sm focus:outline-white">
                                 <span class="font-bold">{{ auth()->user()->username }}</span>
-                                <span
+                                {{-- <span
                                     class="ml-2 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                                     Balance: Rp {{ number_format(auth()->user()->balance) }}
-                                </span>
+                                </span> --}}
                             </a>
                         </li>
                         {{-- <li class="my-2">
