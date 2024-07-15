@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 */
 
-Route::resource('movies', MovieController::class);
+
 
 
 // Route::get('/movies/show/{movie}', [MovieController::class, 'show'])->name('movies.show');
@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
+    Route::resource('movies', MovieController::class);
 
 
     // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
