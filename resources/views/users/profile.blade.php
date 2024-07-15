@@ -37,14 +37,14 @@
                         </p>
                     </div>
                     <div>
-                        <h3 class="py-2 text-base font-bold text-gray-900 dark:text-white">
+                        {{-- <h3 class="py-2 text-base font-bold text-gray-900 dark:text-white">
                             Balance
                         </h3>
-                        <p class="text-medium text-gray-700 dark:text-gray-300">
-                            <span
+                        <p class="text-medium text-gray-700 dark:text-gray-300"> --}}
+                            {{-- <span
                                 class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                                 Rp {{ number_format($user->balance) }}
-                            </span>
+                            </span> --}}
                         </p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
     </section>
 
     {{-- Top Up Balance Form --}}
-    <section id="top-up-balance" class="p-6 max-w-screen-lg mx-auto">
+    {{-- <section id="top-up-balance" class="p-6 max-w-screen-lg mx-auto">
         <div
             class="flex flex-col md:flex-row items-center justify-center bg-white border border-gray-200 rounded-lg shadow-lg w-full p-5 mb-3 max-w-screen-lg mx-auto dark:border-gray-700 dark:bg-gray-800 relative">
             <div class="flex flex-col flex-grow">
@@ -95,5 +95,5 @@
                 </form>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
