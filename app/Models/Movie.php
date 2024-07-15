@@ -21,6 +21,7 @@ class Movie extends Model
         'title',
         'description',
         'release_date',
+        'genre',
         'poster_url',
         'age_rating',
         'ticket_price',
@@ -82,13 +83,13 @@ class Movie extends Model
             $query->where('title', 'like', '%' . $title . '%');
         }
 
-        if ($sort ?? false) {
-            $sort = str_replace(' ', '_', $sort);
+        // if ($sort ?? false) {
+        //     $sort = str_replace(' ', '_', $sort);
 
-            if ($sort === 'release_date' || $sort === 'age_rating' || $sort === 'ticket_price') {
-                $query->orderBy($sort);
-            }
-        }
+        //     if ($sort === 'release_date' || $sort === 'age_rating' || $sort === 'ticket_price') {
+        //         $query->orderBy($sort);
+        //     }
+        // }
     }
 
     /**
@@ -96,16 +97,16 @@ class Movie extends Model
      *
      * @return Movie
      */
-    public function loadDatesForCurrentWeek(): Movie
-    {
-        $currentDate = today('Asia/Jakarta');
-        $nextWeek = $currentDate->copy()->addWeek();
+    // public function loadDatesForCurrentWeek(): Movie
+    // {
+    //     $currentDate = today('Asia/Jakarta');
+    //     $nextWeek = $currentDate->copy()->addWeek();
 
-        return $this->load([
-            'dates' => function ($query) use ($currentDate, $nextWeek) {
-                $query->whereBetween('date', [$currentDate, $nextWeek])
-                    ->with('showtimes');
-            },
-        ]);
-    }
+    //     return $this->load([
+    //         'dates' => function ($query) use ($currentDate, $nextWeek) {
+    //             $query->whereBetween('date', [$currentDate, $nextWeek])
+    //                 ->with('showtimes');
+    //         },
+    //     ]);
+    // }
 }

@@ -7,6 +7,10 @@
     Age Rating: {{ $movie->age_rating }}
 </span>
 <span
+    class="bg-yellow-100 text-yellow-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-400 border border-yellow-400">
+    Genre: {{ ($movie->genre) }}
+</span>
+<span
     class="bg-green-100 text-green-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
     Price: Rp {{ number_format($movie->ticket_price) }}
 </span>
