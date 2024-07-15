@@ -77,12 +77,12 @@ class Movie extends Model
      *
      * @return void
      */
-    public function scopeFilter(Builder $query, ?string $title, ?string $sort): void
+    public function scopeFilter(Builder $query, ?string $search, ?string $genre): void
     {
-        if ($title ?? false) {
-            $query->where('title', 'like', '%' . $title . '%');
-        }
-
+        if ($search ?? false) {
+            $query->where('title', 'like', '%' . $search . '%')->orWhere('genre' ,'LIKE', '%' . $search . '%');
+        } 
+        
         // if ($sort ?? false) {
         //     $sort = str_replace(' ', '_', $sort);
 

@@ -155,9 +155,9 @@ class UserController extends Controller
             $user->age = $request->age;
         }
 
-        if ($request->has('amount')) {
-            $user->increment('balance', $request->amount);
-        }
+        // if ($request->has('amount')) {
+        //     $user->increment('balance', $request->amount);
+        // }
 
         $user->save();
 

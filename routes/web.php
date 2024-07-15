@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 */
 
-Route::resource('movies', MovieController::class);
 
-Route::get('/', [MovieController::class, 'index'])->name('home');
+
 // Route::get('/movies/show/{movie}', [MovieController::class, 'show'])->name('movies.show');
 // Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 // Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
@@ -35,14 +34,16 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', [MovieController::class, 'index'])->name('home');
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-
+    
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
-
+    
+    Route::resource('movies', MovieController::class);
 
     // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 
