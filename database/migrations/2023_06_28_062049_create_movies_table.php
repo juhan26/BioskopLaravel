@@ -16,6 +16,7 @@ return new class extends Migration {
                 ->unique();
             $table->text('description');
             $table->date('release_date');
+            $table->string('genre');
             $table->string('poster_url');
             $table->string('age_rating');
             $table->bigInteger('ticket_price');

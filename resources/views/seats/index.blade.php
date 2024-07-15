@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mx-auto px-4">
     <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 mt-4">Seat</h2>
-    <a href="{{ url('/seat/create') }}" class="px-4 py-2 bg-primary-500 text-white rounded-md shadow-sm hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">Add seats</a>
+    <a href="{{ url('/seat/create') }}" class="px-4 py-2 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2">Add seats</a>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg " style="margin-top: 2rem">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
