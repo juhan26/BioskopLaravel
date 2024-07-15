@@ -29,8 +29,8 @@ class UpdateDateshowtimeRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'required' => 'Attribute wajib diisi.',
-            'exists' => 'Attribute tidak valid.',
+            'required' => 'Field :attribute wajib diisi.',
+            'exists' => 'Field :attribute tidak valid.',
         ];
     }
 }
