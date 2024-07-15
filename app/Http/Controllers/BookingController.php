@@ -80,7 +80,7 @@ class BookingController extends Controller
 
         if ($booking) {
             $booking->delete();
-            return redirect()->route('booking.index')->with('success', 'Booking cancelled successfully.');
+            return redirect()->route('booking.index')->with('success', 'Booking deleted successfully.');
         }
 
         return redirect()->route('booking.index')->with('error', 'Booking not found.');
