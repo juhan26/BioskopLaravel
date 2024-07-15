@@ -110,10 +110,7 @@ public function update(Request $request, Movie $movie)
         $movie->poster_url = $posterPath;
     }
 
-    $movie->title = $request->title;
-    $movie->description = $request->description;
-
-    $movie->save();
+    $movie->update($request->all());
 
     return redirect()->route('movies.index', $movie->id)->with('success', 'Movie updated successfully.');
 }
