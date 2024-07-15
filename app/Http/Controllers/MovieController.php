@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
@@ -91,8 +92,7 @@ public function update(Request $request, Movie $movie)
     $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
-        'poster_url' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // contoh validasi untuk gambar
-        // tambahkan validasi lain sesuai kebutuhan
+        'poster_url' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     if ($request->hasFile('poster_url')) {
@@ -104,18 +104,20 @@ public function update(Request $request, Movie $movie)
     $movie->title = $request->title;
     $movie->description = $request->description;
 
-
     $movie->save();
 
     return redirect()->route('movies.index', $movie->id)->with('success', 'Movie updated successfully.');
 }
 
-
     public function destroy(Movie $movie)
 {
-    $movie->delete();
-
-    return redirect()->route('home')->with('success', 'Movie deleted successfully.');
+    try {
+        $movie->delete();    
+        return redirect()->route('home')->with('success', 'Movie deleted successfully.');
+    } catch (Exception $e) {
+        return redirect()->route('home')->with('error', 'Movie failed to delete.');
+        
+    }
 }
 
 }
