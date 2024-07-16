@@ -40,7 +40,7 @@
                             @csrf
                             @method('DELETE')
                             <button class="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" onclick="return confirm('Are you sure you want to delete this item?');">
-                                Cancel Booking
+                                Cancel Book
                             </button>
                         </form>
                     </div>
