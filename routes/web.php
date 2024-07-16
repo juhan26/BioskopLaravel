@@ -40,10 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     
+    Route::resource('movies', MovieController::class);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
-    
-    Route::resource('movies', MovieController::class);
+
 
     // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 

@@ -55,19 +55,19 @@
                             @endforelse
                         </select>
                     </div>
-                    <div class="w-full">
+                    <div class="sm:col-span-2">
                         <label for="dateshowtime_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Date
+                            Date Showtime
                         </label>
                         <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                             @forelse ($dateshowtimes as $dateshowtime)
-                                <option value="{{ $dateshowtime->date->date }}">{{ $dateshowtime->date->date }}</option>
+                                <option value="{{ $dateshowtime->id }}">{{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}</option>
                             @empty
                                 <option value="">No dates available</option>
                             @endforelse
                         </select>
                     </div>
-                    <div class="w-full">
+                    {{-- <div class="w-full">
                         <label for="showtime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Showtime
                         </label>
@@ -78,7 +78,7 @@
                                 <option value="">No showtimes available</option>
                             @endforelse
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
 
                 {{-- seat lists --}}

@@ -10,6 +10,9 @@
             <ul class="flex space-x-4 font-medium">
                 @auth
                     <li>
+                        <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Movies</a>
+                    </li>
+                    <li>
                         <a href="{{ route('booking.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Bookings</a>
                     </li>
                     <li>
@@ -23,9 +26,6 @@
                     </li>
                     <li>
                         <a href="{{ route('seat.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Seats</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Movies</a>
                     </li>
                 @endauth
             </ul>
