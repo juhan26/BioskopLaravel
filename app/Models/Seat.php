@@ -19,3 +19,5 @@ class Seat extends Model
                                 ->where('dateshowtime_id', $dateshowtime->id)
                                 ->exists();
 }
+
+}
