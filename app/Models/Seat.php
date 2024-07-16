@@ -14,13 +14,8 @@ class Seat extends Model
 
   public function isBooked($movie, $dateshowtime)
 {
-  if (!$movie || !$dateshowtime) {
-    return false; // Jika salah satu objek null, return false
-}
 
         return $this->bookings()->where('movie_id', $movie->id)
                                 ->where('dateshowtime_id', $dateshowtime->id)
                                 ->exists();
-}
-
 }
