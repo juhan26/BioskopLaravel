@@ -41,18 +41,24 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        // dd($request->all());
-        $data = collect($request->validated());
-        // $booking = Booking::create($request->all());
+        $data = $request->validated();
+    
+        // Check if seat_id is an array
         if (is_array($request->seat_id)) {
+            // Loop through each seat_id
             foreach ($request->seat_id as $seat_id) {
-                $data->put('seat_id', $seat_id);
-                Booking::create($data->toArray());
+                // Create a new booking for each seat_id
+                Booking::create([
+                    'movie_id' => $data['movie_id'],
+                    'dateshowtime_id' => $data['dateshowtime_id'],
+                    'seat_id' => $seat_id,
+                ]);
             }
         } else {
-            Booking::create($data->toArray());
+            // Create a booking if seat_id is not an array (fallback case)
+            Booking::create($data);
         }
-
+    // dd($data);
         return redirect()->route('booking.index')->with('success', 'Booking created successfully.');
     }
 
