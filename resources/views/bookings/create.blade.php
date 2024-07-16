@@ -55,6 +55,7 @@
                                 @endforelse
                             </select>
                         </div>
+                        
                         <div class="sm:col-span-2">
                             <label for="dateshowtime_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Date Showtime
@@ -106,6 +107,7 @@
                             @endforeach
                         </div>
                     </div>
+                    
                     
                         <div class="px-3 py-2 my-6 text-xs font-bold text-center text-white bg-gray-500 rounded-lg">
                             SCREEN
