@@ -1,49 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 mt-4">Seat</h2>
-    <a href="{{ url('/seat/create') }}" class="px-4 py-2 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2">Add seats</a>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg " style="margin-top: 2rem">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        No
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Seats Number
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Actions
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($seats as $index => $seat)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $index + 1 }}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $seat->seat_number}}
-                    </td>
-                    <td class="px-6 py-4 flex space-x-2">
-                        <form action="{{ route("seat.destroy", $seat->id) }}" method="POST" class="delete-form">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="4" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No Seats Found.</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+<div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+<h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 mt-4">Seats</h2>
+<a href="{{ url('/seat/create') }}" class="px-4 py-2 mb-4 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2">Add Seats</a>
+<div class="grid grid-cols-8 gap-4 mt-8">
+    @foreach ($seats as $seat)
+        <div>
+            <label for="seat_id" class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" name="seat_id" id="seat_id"
+                    value="{{ $seat->id }}"
+                    class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700"
+                    >
+                <span
+                    class="lg:ml-2  ? 'text-red-500' : 'text-gray-900 dark:text-white' }}">
+                    {{ $seat->seat_number }}
+                </span>
+            </label>
+        </div>
+    @endforeach
+</div>
+<div class="px-3 py-2 my-6 text-xs font-bold text-center text-white bg-gray-500 rounded-lg">
+    SCREEN
+</div>
 </div>
 
 <script>
