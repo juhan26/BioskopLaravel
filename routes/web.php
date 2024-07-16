@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
 // Route::get('/movies/show/{movie}', [MovieController::class, 'show'])->name('movies.show');
 // Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 // Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
@@ -40,10 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-
+    
+    Route::resource('movies', MovieController::class);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
-    Route::resource('movies', MovieController::class);
 
 
     // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');

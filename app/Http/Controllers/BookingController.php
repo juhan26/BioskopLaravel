@@ -41,8 +41,17 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        $booking = Booking::create($request->all());
         // dd($request->all());
+        $data = collect($request->validated());
+        // $booking = Booking::create($request->all());
+        if (is_array($request->seat_id)) {
+            foreach ($request->seat_id as $seat_id) {
+                $data->put('seat_id', $seat_id);
+                Booking::create($data->toArray());
+            }
+        } else {
+            Booking::create($data->toArray());
+        }
 
         return redirect()->route('booking.index')->with('success', 'Booking created successfully.');
     }

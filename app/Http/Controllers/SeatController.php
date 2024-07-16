@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Seat;
 use App\Http\Requests\StoreSeatRequest;
 use App\Http\Requests\UpdateSeatRequest;
+use App\Models\Dateshowtime;
+use App\Models\Movie;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\QueryException;
 
@@ -15,8 +17,11 @@ class SeatController extends Controller
      */
     public function index()
     {
+        $dateshowtimes = Dateshowtime::all();
+        $movies = Movie::all();
         $seats = Seat::all();
-        return view('seats.index', compact('seats'));
+
+        return view('seats.index', compact('seats', 'dateshowtimes', 'movies'));
     }
 
     /**

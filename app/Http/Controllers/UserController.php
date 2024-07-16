@@ -96,7 +96,7 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()
-            ->route('home')
+            ->route('login')
             ->with('success', 'You have been logged out!');
     }
 
@@ -155,9 +155,9 @@ class UserController extends Controller
             $user->age = $request->age;
         }
 
-        if ($request->has('amount')) {
-            $user->increment('balance', $request->amount);
-        }
+        // if ($request->has('amount')) {
+        //     $user->increment('balance', $request->amount);
+        // }
 
         $user->save();
 
