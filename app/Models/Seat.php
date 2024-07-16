@@ -10,10 +10,7 @@ class Seat extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function studios()
-    {
-        return $this->hasMany(Studio::class); //
-    }
+    
 
   public function isBooked($movie, $dateshowtime)
 {
