@@ -27,6 +27,9 @@
                     <li class="{{ request()->routeIs('seat.index') ? 'active' : '' }}">
                         <a href="{{ route('seat.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Seats</a>
                     </li>
+                    <li class="{{ request()->routeIs('studios.index') ? 'active' : '' }}">
+                        <a href="{{ route('studios.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Studios</a>
+                    </li>
                 @endauth
             </ul>
 
