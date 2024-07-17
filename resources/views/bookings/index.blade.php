@@ -32,14 +32,17 @@
                             Seat Numbers
                         </h3>
                        
+                        
+
                         <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                             {{ $booking->seats->seat_number }}
                         </span>
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1 mt-3 ">
                             Price
                         </h3>
                         <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                           Rp. {{number_format ($booking->movie->ticket_price) }}
+                           Rp. {{number_format($booking->movie->ticket_price) }}
                         </span>
                     </div>
                     <div class="flex justify-end mt-4">
@@ -47,7 +50,7 @@
                             @csrf
                             @method('DELETE')
                             <button class="px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" onclick="return confirm('Are you sure you want to delete this item?');">
-                                Cancel Book
+                                Cancel Booking
                             </button>
                         </form>
                     </div>
