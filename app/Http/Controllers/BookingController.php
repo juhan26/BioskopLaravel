@@ -18,8 +18,15 @@ class BookingController extends Controller
     {
         $bookings = Booking::with('movie')->get();
         $seats = Seat::all();
+
+        // Menghitung kursi yang tersedia
+        $availableSeats = $seats->filter(function($seat) {
+            return !$seat->bookings->count();
+        })->count();
+
+        $bookedSeats = $seats->count();
         // dd($bookings->pluck('movie'));
-        return view('bookings.index', compact('bookings', 'seats'));
+        return view('bookings.index', compact('bookings','availableSeats', 'seats','bookedSeats'));
     }
 
     /**
