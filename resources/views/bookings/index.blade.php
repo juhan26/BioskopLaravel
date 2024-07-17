@@ -31,15 +31,27 @@
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Seat Numbers
                         </h3>
-                       
-                        <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                            {{ $booking->seats->seat_number }}
-                        </span>
+                       <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                        {{ $booking->seats->seat_number }}
+                       </span>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Price
                         </h3>
                         <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                            Rp. {{number_format ($booking->movie->ticket_price) }}
+                        </span>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                            Available Seats
+                        </h3>
+
+                        <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                            <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                {{$availableSeats}}
+                            </span>
+                            /
+                            <span class="bg-red-100 text-red-800 text-sm font-medium ml-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                {{$bookedSeats}}
+                            </span>
                         </span>
                     </div>
                     <div class="flex justify-end mt-4">
