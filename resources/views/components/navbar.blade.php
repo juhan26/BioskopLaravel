@@ -9,26 +9,28 @@
         <div class="flex items-center space-x-4">
             <ul class="flex space-x-4 font-medium">
                 @auth
-                    <li>
+                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                         <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Movies</a>
                     </li>
-                    <li>
+                    <li class="{{ request()->routeIs('booking.index') ? 'active' : '' }}">
                         <a href="{{ route('booking.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Bookings</a>
                     </li>
-                    <li>
+                    <li class="{{ request()->routeIs('showtimes.index') ? 'active' : '' }}">
                         <a href="{{ route('showtimes.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Showtimes</a>
                     </li>
-                    <li>
+                    <li class="{{ request()->routeIs('date.index') ? 'active' : '' }}">
                         <a href="{{ route('date.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Dates</a>
                     </li>
-                    <li>
+                    <li class="{{ request()->routeIs('dateshowtime.index') ? 'active' : '' }}">
                         <a href="{{ route('dateshowtime.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Date Showtimes</a>
                     </li>
-                    <li>
+                    <li class="{{ request()->routeIs('seat.index') ? 'active' : '' }}">
                         <a href="{{ route('seat.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Seats</a>
                     </li>
                 @endauth
             </ul>
+
+        
 
             @if (Route::has('login'))
                 <ul class="flex items-center space-x-4 font-medium">

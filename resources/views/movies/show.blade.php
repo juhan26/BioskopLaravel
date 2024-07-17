@@ -40,7 +40,7 @@
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                @foreach ($movie->dates as $date)
+                {{-- @foreach ($movie->dates as $date)
                     <div class="border rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-2">{{ $date->date->format('D, d M Y') }}</h3>
                         <ul>
@@ -49,7 +49,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
     </section>
