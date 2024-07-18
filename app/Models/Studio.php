@@ -13,4 +13,7 @@ class Studio extends Model
     public function seats(){
         return $this->belongsTo(Seat::class, 'seat_id');
     }
+    public function movies(){
+        return $this->hasMany(Movie::class);
+    }
 }

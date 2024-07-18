@@ -6,9 +6,12 @@ use App\Models\Date;
 use App\Models\Dateshowtime;
 use App\Models\Movie;
 use App\Models\Showtime;
+use App\Models\Studio;
+
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
@@ -20,10 +23,16 @@ class MovieController extends Controller
      * @return View
      */
 
-     public function create(): View
-     {
-         return view('movies.create');
-     }
+     public function create()
+    {
+        $studios = Studio::select(DB::raw('MIN(id) as id, name'))
+        ->groupBy('name')
+        ->get();
+        $existingStudioIds = Movie::pluck('studio_id')->toArray();
+
+        return view('movies.create', compact('studios', 'existingStudioIds'));
+    }
+
      
     public function index(Request $request): View
     {
@@ -33,6 +42,7 @@ class MovieController extends Controller
         $movies = Movie::filter($title, $sort)
             ->latest()
             ->paginate(8);
+        
 
         return view('movies.home', compact('movies'));
     }

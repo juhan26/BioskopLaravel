@@ -15,6 +15,10 @@
     Price: Rp {{ number_format($movie->ticket_price) }}
 </span>
 <span
+    class="bg-green-100 text-green-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
+    Price: Rp {{ $movie->studios->name }}
+</span>
+{{-- <span
     class="bg-violet-100 text-violet-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-violet-700 dark:text-violet-400 border border-violet-400">
     Avaible Seats : 35
-</span>
+</span> --}}
