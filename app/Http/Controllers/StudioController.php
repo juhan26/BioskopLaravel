@@ -77,10 +77,10 @@ class StudioController extends Controller
     public function show(Studio $studio)
 {
     // Ambil kursi yang terkait dengan studio ini
-    $seat = $studio->seat;
+    $seats = Seat::all() ;
 
     // Kirim data studio dan kursi ke view
-    return view('studios.show', compact('studio', 'seat'));
+    return view('studios.show', compact('studio', 'seats'));
 }
 
 

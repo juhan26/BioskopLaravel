@@ -47,6 +47,10 @@ class Movie extends Model
     {
         return $this->hasMany(Showtime::class);
     }
+    public function studios()
+    {
+        return $this->belongsTo(Studio::class, 'studio_id');
+    }
 
     // public function bookings()
     // {
