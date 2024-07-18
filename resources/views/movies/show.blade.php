@@ -40,6 +40,7 @@
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<<<<<<< HEAD
                 @foreach ($dates as $date)
                     <div class="border rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-2">{{ $date->date->format('D, d M Y') }}</h3>
@@ -50,6 +51,19 @@
                         </ul>
                     </div>
                 @endforeach
+=======
+                {{-- @foreach ($dates as $date) --}}
+                {{-- @dd($dateshowtime); --}}
+                    {{-- <div class="border rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-2">{{ $date->date->format('D, d M Y') }}</h3>
+                        <ul>
+                            @foreach ($dateshowtime->date as $date)
+                                <x-showtime-button :showtime="$showtime" :movie="$movie" :date="$date" />
+                            @endforeach
+                        </ul>
+                    </div> --}}
+                {{-- @endforeach --}}
+>>>>>>> de26e2781dabd121f14efb60b215b9eb241fd522
             </div>
         </div>
     </section>

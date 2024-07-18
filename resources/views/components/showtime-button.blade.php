@@ -1,12 +1,12 @@
-@props(['showtime', 'movie', 'date', 'currentDate', 'currentTime'])
+@props(['showtime', 'movie', 'date'])
 
-@php
+{{-- @php
     $formattedDate = $date->date->format('Y-m-d');
     $isToday = $formattedDate == $currentDate;
     $isPastDate = $formattedDate < $currentDate;
     $isPastShowtime = $showtime->start_time < $currentTime;
     $disabled = $isPastDate || ($isToday && $isPastShowtime);
-@endphp
+@endphp --}}
 
 <li>
     <a href="{{ route('bookings.create', [ $date, $showtime]) }}">
