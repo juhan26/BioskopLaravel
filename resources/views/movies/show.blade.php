@@ -40,55 +40,44 @@
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-
-                @foreach ($dates as $date)
-                    <div class="border rounded-lg p-4">
-                        <h3 class="text-lg font-semibold mb-2">{{ $date->date }}</h3>
-                        {{-- <ul>
-                            @foreach ($date->showtimes as $showtime)
-                                
-                                
-                            @endforeach
-                        </ul> --}}
-                      @foreach ($showtimes as $showtime)
-                      
-                 
-                      <a href="{{ route('booking.create') }}" class="btn ">
-                           <button type="button"
-                            class="focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2">
-                            {{ $showtime->start_time }} - {{ $showtime->end_time }}
-                        </button>
-                           {{-- - {{ $date->showtimes->end_time }} --}}
-                      </a>
-{{-- 
-                      <a href="{{ route('bookings.create', [ $date, $showtime]) }}">
-                        <button type="button"
-                            class="focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2
-                            {{ $disabled ? 'opacity-50 cursor-not-allowed' : '' }}"
-                            {{ $disabled ? 'disabled' : '' }}>
-                            {{ $showtime->start_time }} - {{ $showtime->end_time }}
-                        </button>
-                    </a> --}}
-                
-                          
-                      @endforeach
-                        
-                    </div>
+                @php
+                    $previousDate = null;
+                @endphp
+            
+                @foreach ($dateshowtimes as $dateshowtime)
+                    @if ($previousDate !== $dateshowtime->date->date)
+                        @if (!is_null($previousDate))
+                            </ul> <!-- Closing ul for previous showtimes -->
+                        </div> <!-- Closing previous card -->
+                        <br> <!-- Add spacing between cards -->
+                        @endif
+            
+                        <div class="border rounded-lg p-4">
+                            <h3 class="text-lg font-semibold mb-2">{{ $dateshowtime->date->date }}</h3>
+                            <ul>
+                    @endif
+            
+                    <li>
+                        <a href="{{ route('booking.create') }}" class="btn">
+                            <button type="button"
+                                    class="focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2">
+                                {{ $dateshowtime->showtime->start_time }} - {{ $dateshowtime->showtime->end_time }}
+                            </button>
+                        </a>
+                    </li>
+            
+                    @php
+                        $previousDate = $dateshowtime->date->date;
+                    @endphp
+            
                 @endforeach
-
-                {{-- @foreach ($dates as $date) --}}
-                {{-- @dd($dateshowtime); --}}
-                    {{-- <div class="border rounded-lg p-4">
-                        <h3 class="text-lg font-semibold mb-2">{{ $date->date->format('D, d M Y') }}</h3>
-                        <ul>
-                            @foreach ($dateshowtime->date as $date)
-                                <x-showtime-button :showtime="$showtime" :movie="$movie" :date="$date" />
-                            @endforeach
-                        </ul>
-                    </div> --}}
-                {{-- @endforeach --}}
-
+            
+                @if (!is_null($previousDate))
+                            </ul> <!-- Closing ul for last set of showtimes -->
+                        </div> <!-- Closing last card -->
+                @endif
             </div>
+            
         </div>
     </section>
 @endsection
