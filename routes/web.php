@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\StudioController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -98,4 +99,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking/edit/{booking}', [App\Http\Controllers\BookingController::class, 'edit'])->name('booking.edit');
     Route::put('/booking/update/{booking}', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
     Route::delete('/booking/destroy/{booking}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
+
+
+    //Studios(Sano)
+    Route::resource('studios',StudioController::class);
+    // Route::delete('/studios/destroy/{names}', [StudioController::class, 'destroy'])->name('studios.destroy');
 });

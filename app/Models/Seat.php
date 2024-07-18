@@ -14,6 +14,10 @@ class Seat extends Model
     {
         return $this->hasMany(Booking::class); //
     }
+    
+    public function studios(){
+      return $this->hasMany(Studio::class); //
+    }
 
   public function isBooked($movie, $dateshowtime)
 {
