@@ -90,8 +90,13 @@ class MovieController extends Controller
     {
 
     
+        // $dates = Date::all();
+        $Dateshowtime = Dateshowtime::all();
         $dates = Date::all();
         $showtimes = Showtime::all();
+        // dd($dates);
+
+
 
         // $currentDate = today('Asia/Jakarta')->format('Y-m-d');
         // $currentTime = now('Asia/Jakarta')->format('H:i:s');
