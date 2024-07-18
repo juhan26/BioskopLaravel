@@ -57,7 +57,7 @@ class BookingController extends Controller
                 // Create a new booking for each seat_id
                 Booking::create([
                     'movie_id' => $data['movie_id'],
-                    'dateshowtime_id' => $data['dateshowtime_id'],
+                    'dateshowtime_id' => $data['dateshowtiZme_id'],
                     'seat_id' => $seat_id,
                 ]);
             }
