@@ -49,7 +49,7 @@
                         @if (!is_null($previousDate))
                             </ul> <!-- Closing ul for previous showtimes -->
                         </div> <!-- Closing previous card -->
-                        <br> <!-- Add spacing between cards -->
+                        <br> 
                         @endif
             
                         <div class="border rounded-lg p-4">
