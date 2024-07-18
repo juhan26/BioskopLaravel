@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Date;
+use App\Models\Dateshowtime;
 use App\Models\Movie;
+use App\Models\Showtime;
 use App\Models\Studio;
+
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
@@ -53,6 +57,7 @@ class MovieController extends Controller
         'genre' => 'required|string|max:255',
         'age_rating' => 'required|string|max:10',
         'ticket_price' => 'required|numeric|min:0',
+        'studio_id' => 'required|string|max:255',
     ]);
 
     $imagePath = $request->file('poster_url')->store('posters', 'public');
@@ -65,6 +70,7 @@ class MovieController extends Controller
         'genre' => $request->get('genre'),
         'age_rating' => $request->get('age_rating'),
         'ticket_price' => $request->get('ticket_price'),
+        'studio_id' => $request->get('studio_id'),
     ]);
     
     // dd($imagePath);
@@ -82,13 +88,18 @@ class MovieController extends Controller
      */
     public function show(Movie $movie): View
     {
+
+    
+        $dates = Date::all();
+        $showtimes = Showtime::all();
+
         // $currentDate = today('Asia/Jakarta')->format('Y-m-d');
         // $currentTime = now('Asia/Jakarta')->format('H:i:s');
 
         // $movie = $movie->loadDatesForCurrentWeek();
         // dd($movie->dates);
 
-        return view('movies.show', compact('movie'));
+        return view('movies.show', compact('movie', 'dates', 'showtimes'));
     }
 
     public function edit(Movie $movie)

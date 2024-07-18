@@ -25,6 +25,7 @@ class Movie extends Model
         'poster_url',
         'age_rating',
         'ticket_price',
+        'studio_id',
     ];
 
     /**
