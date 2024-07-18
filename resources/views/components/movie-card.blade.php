@@ -23,7 +23,7 @@
 
     <div class="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 rounded-b-lg">
         <a href="{{ route('movies.edit', $movie->id) }}" class="text-indigo-600 hover:text-indigo-900 font-semibold">Edit</a>
-        <a href="{{ route('booking.create') }}" class="text-indigo-600 hover:text-indigo-900 font-semibold">Booking</a>
+        {{-- <a href="{{ route('booking.create') }}" class="text-indigo-600 hover:text-indigo-900 font-semibold">Booking</a> --}}
         <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
             @csrf
             @method('DELETE')

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Dateshowtime;
 use App\Models\Movie;
 use App\Models\Seat;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
@@ -32,15 +33,20 @@ class BookingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $movies = Movie::all();
         $dateshowtimes = Dateshowtime::all();
         $seats = Seat::all();
 
+        $selectedShowtime = Dateshowtime::find($request->showtime);
+        $selectedMovie = Movie::find($request->movie);
+
+        // dd($selectedMovie);
+
         // dd($movies);
 
-        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats'));
+        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie'));
     }
 
     /**
