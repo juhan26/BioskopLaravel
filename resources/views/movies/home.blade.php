@@ -26,8 +26,8 @@
         </div>
         
 
-        <div class="my-6">
+        {{-- <div class="my-6">
             {{ $movies->appends(request()->only('sort'))->links() }}
-        </div>
+        </div> --}}
     </section>
 @endsection
