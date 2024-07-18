@@ -40,18 +40,42 @@
             </h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-<<<<<<< HEAD
+
                 @foreach ($dates as $date)
                     <div class="border rounded-lg p-4">
-                        <h3 class="text-lg font-semibold mb-2">{{ $date->date->format('D, d M Y') }}</h3>
-                        <ul>
+                        <h3 class="text-lg font-semibold mb-2">{{ $date->date }}</h3>
+                        {{-- <ul>
                             @foreach ($date->showtimes as $showtime)
-                                <x-showtime-button :showtime="$showtime"  :date="$date" :currentDate="$currentDate" :currentTime="$currentTime" />
+                                
+                                
                             @endforeach
-                        </ul>
+                        </ul> --}}
+                      @foreach ($showtimes as $showtime)
+                      
+                 
+                      <a href="{{ route('booking.create') }}" class="btn ">
+                           <button type="button"
+                            class="focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2">
+                            {{ $showtime->start_time }} - {{ $showtime->end_time }}
+                        </button>
+                           {{-- - {{ $date->showtimes->end_time }} --}}
+                      </a>
+{{-- 
+                      <a href="{{ route('bookings.create', [ $date, $showtime]) }}">
+                        <button type="button"
+                            class="focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2
+                            {{ $disabled ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            {{ $disabled ? 'disabled' : '' }}>
+                            {{ $showtime->start_time }} - {{ $showtime->end_time }}
+                        </button>
+                    </a> --}}
+                
+                          
+                      @endforeach
+                        
                     </div>
                 @endforeach
-=======
+
                 {{-- @foreach ($dates as $date) --}}
                 {{-- @dd($dateshowtime); --}}
                     {{-- <div class="border rounded-lg p-4">
@@ -63,7 +87,7 @@
                         </ul>
                     </div> --}}
                 {{-- @endforeach --}}
->>>>>>> de26e2781dabd121f14efb60b215b9eb241fd522
+
             </div>
         </div>
     </section>

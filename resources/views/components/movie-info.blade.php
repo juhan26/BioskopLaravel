@@ -15,7 +15,7 @@
     Price: Rp {{ number_format($movie->ticket_price) }}
 </span>
 <span
-    class="bg-green-100 text-green-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
+    class="bg-amber-100 text-amber-900 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
     Studio: {{ $movie->studios->name }}
 </span>
 {{-- <span
