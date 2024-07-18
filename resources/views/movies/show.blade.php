@@ -43,13 +43,13 @@
                 @endphp
 
                 @foreach ($dateshowtimes as $dateshowtime)
-                   
-                       
-                            </ul> 
-                        </div> 
+                    @if ($previousDate !== $dateshowtime->date->date)
+                        @if (!is_null($previousDate))
+                            </ul> <!-- Closing ul for previous showtimes -->
+                        </div> <!-- Closing previous card -->
                         <br> 
-
-
+                        @endif
+            
                         <div class="border rounded-lg p-4">
                             <h3 class="text-lg font-semibold mb-2">{{ $dateshowtime->date->date }}</h3>
                             <ul>
