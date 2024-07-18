@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Date;
+use App\Models\Dateshowtime;
 use App\Models\Movie;
+use App\Models\Showtime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
@@ -73,13 +76,18 @@ class MovieController extends Controller
      */
     public function show(Movie $movie): View
     {
+
+    
+        $dates = Date::all();
+        $showtimes = Showtime::all();
+
         // $currentDate = today('Asia/Jakarta')->format('Y-m-d');
         // $currentTime = now('Asia/Jakarta')->format('H:i:s');
 
         // $movie = $movie->loadDatesForCurrentWeek();
         // dd($movie->dates);
 
-        return view('movies.show', compact('movie'));
+        return view('movies.show', compact('movie', 'dates', 'showtimes'));
     }
 
     public function edit(Movie $movie)
