@@ -57,6 +57,7 @@ class MovieController extends Controller
         'genre' => 'required|string|max:255',
         'age_rating' => 'required|string|max:10',
         'ticket_price' => 'required|numeric|min:0',
+        'studio_id' => 'required|string|max:255',
     ]);
 
     $imagePath = $request->file('poster_url')->store('posters', 'public');
@@ -69,6 +70,7 @@ class MovieController extends Controller
         'genre' => $request->get('genre'),
         'age_rating' => $request->get('age_rating'),
         'ticket_price' => $request->get('ticket_price'),
+        'studio_id' => $request->get('studio_id'),
     ]);
     
     // dd($imagePath);
