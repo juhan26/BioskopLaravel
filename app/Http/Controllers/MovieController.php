@@ -92,8 +92,10 @@ class MovieController extends Controller
     
         // $dates = Date::all();
         $dateshowtimes = Dateshowtime::all();
-        $dates = Date::all();
-        $showtimes = Showtime::all();
+
+        // $dates = Date::all();
+        // $showtimes = Showtime::all();
+
         // dd($dates);
 
 
@@ -104,7 +106,8 @@ class MovieController extends Controller
         // $movie = $movie->loadDatesForCurrentWeek();
         // dd($movie->dates);
 
-        return view('movies.show', compact('movie', 'dates', 'showtimes', 'dateshowtimes'));
+        return view('movies.show', compact('movie','dateshowtimes'));
+
     }
 
     public function edit(Movie $movie)
