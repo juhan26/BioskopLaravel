@@ -45,15 +45,15 @@
                 @foreach ($dateshowtimes as $dateshowtime)
                     @if ($previousDate !== $dateshowtime->date->date)
                         @if (!is_null($previousDate))
-                            </ul> <!-- Closing ul for previous showtimes -->
-                        </div> <!-- Closing previous card -->
-                        <br> 
+                            </ul> 
+                        </div> 
+                        <br> <!-- Add spacing between cards -->
                         @endif
-            
+
                         <div class="border rounded-lg p-4">
                             <h3 class="text-lg font-semibold mb-2">{{ $dateshowtime->date->date }}</h3>
                             <ul>
-                    
+                    @endif
 
                     <li>
                         <a href="{{ route('booking.create', ['showtime_id' => $dateshowtime->showtime->id]) }}" class="btn">
@@ -70,10 +70,10 @@
 
                 @endforeach
 
-              
+                @if (!is_null($previousDate))
                     </ul> 
                 </div> 
-
+                @endif
             </div>
 
         </div>
