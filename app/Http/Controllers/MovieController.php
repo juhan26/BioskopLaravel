@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dateshowtime;
 use App\Models\Movie;
 use App\Models\Studio;
 use Exception;
@@ -88,7 +89,9 @@ class MovieController extends Controller
         // $movie = $movie->loadDatesForCurrentWeek();
         // dd($movie->dates);
 
-        return view('movies.show', compact('movie'));
+        $dates = Dateshowtime::all();
+
+        return view('movies.show', compact('movie', 'dates'));
     }
 
     public function edit(Movie $movie)
