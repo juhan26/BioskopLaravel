@@ -52,7 +52,7 @@
                                     <option value="{{ $movie->id }}"
                                     >{{ $movie->title }}</option>
                                 @empty
-                                    <option value="">No movies available</option>
+                               1     <option value="">No movies available</option>
                                 @endforelse
                             </select>
                         </div>
