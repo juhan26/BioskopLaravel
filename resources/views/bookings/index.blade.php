@@ -7,9 +7,9 @@
     </h1>
 
     <div class="w-full lg:w-1/2 lg:p-2 mb-4 lg:mb-0">
-        <a href="{{ route('booking.create') }}" class="px-4 py-2 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2">
+        {{-- <a href="{{ route('booking.create') }}" class="px-4 py-2 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-700 focus:ring-offset-2">
             Create Bookings
-        </a>
+        </a> --}}
     </div>
 
     <div class="container mx-auto py-8">

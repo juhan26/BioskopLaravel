@@ -18,9 +18,9 @@
                     <div>
                         <a href="{{ route('movies.edit', $movie->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                     </div>
-                    <div>
+                    {{-- <div>
                         <a href="{{ route('booking.create', ['movie' => $movie->id]) }}" class="text-indigo-600 hover:text-indigo-900" id="movieButton">Bookings</a>
-                    </div>
+                    </div> --}}
                     <div>
                         <form action="{{ route('movies.destroy', $movie->id) }}" method="POST">
                             @csrf
@@ -61,7 +61,7 @@
                     @endif
 
                     <li>
-                        <a href="{{ route('booking.create', ['showtime' => $dateshowtime->id]) }}"  
+                        <a href="{{ route('booking.create', ['showtime' => $dateshowtime->id], ['movie' => $movie->id]) }}"  
                                     class="flex w-full focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2" id="showtimeButton">
                                 {{ $dateshowtime->showtime->start_time }} - {{ $dateshowtime->showtime->end_time }}
                         </a>

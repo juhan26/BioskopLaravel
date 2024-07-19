@@ -40,7 +40,7 @@ class BookingController extends Controller
         $seats = Seat::all();
 
         $selectedShowtime = Dateshowtime::find($request->showtime);
-        $selectedMovie = Movie::find($request->movie);
+        $selectedMovie = Movie::find($request);
 
         // dd($selectedMovie);
 
@@ -63,7 +63,7 @@ class BookingController extends Controller
                 // Create a new booking for each seat_id
                 Booking::create([
                     'movie_id' => $data['movie_id'],
-                    'dateshowtime_id' => $data['dateshowtiZme_id'],
+                    'dateshowtime_id' => $data['dateshowtime_id'],
                     'seat_id' => $seat_id,
                 ]);
             }

@@ -49,8 +49,7 @@
                             </label>
                             <select name="movie_id" id="movie_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" >
                                 @forelse ($movies as $movie)
-                                    <option value="{{ $movie->id }}" @if ($movie->id == $selectedMovie->id) selected
-                                    @endif >{{ $movie->title }}</option>
+                                    <option value="{{ $movie->id }}">{{ $movie->title }}</option>
                                 @empty
                                     <option value="">No movies available</option>
                                 @endforelse
@@ -71,7 +70,7 @@
                             </select>
                         </div>
                     </div>
-{{--             
+            
                     <ul class="mt-4 hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                         <li class="w-full focus-within:z-10">
                             <a href="#" @click.prevent="tab = 'studio1'" :class="{ 'text-gray-900 bg-gray-100 dark:bg-gray-700 dark:text-white': tab === 'studio1', 'hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700': tab !== 'studio1' }" class="inline-block w-full p-4 border-r border-gray-200 dark:border-gray-700 rounded-s-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none">
@@ -84,7 +83,7 @@
                             </a>
                         </li>
                     </ul>
-             --}}
+            
                     <div x-show="tab === 'studio1'">
                         {{-- Content for Studio 1 --}}
                         <div class="grid grid-cols-8 gap-4 mt-6">
