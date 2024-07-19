@@ -1,3 +1,5 @@
+{{-- // resources/views/bookings/create.blade.php --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -6,12 +8,37 @@
             <h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
                 Booking Details
             </h2>
-            
+
+            @if ($selectedMovie)
+            <section id="movie-details" class="p-6 max-w-screen-lg mx-auto">
+                <div class="flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow-lg w-full max-w-screen-lg mx-auto md:flex-row md:max-w-7xl dark:border-gray-700 dark:bg-gray-800">
+                    <img class="ml-4 object-cover w-full h-auto md:w-1/2 md:h-full rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('storage/' . $selectedMovie->poster_url) }}" alt="{{ $selectedMovie->title }}" />
+                    <div class="flex flex-col justify-between p-4 leading-normal md:w-1/2">
+                        <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            {{ $selectedMovie->title }}
+                        </h5>
+                        <div class="flex flex-wrap my-3">
+                            <x-movie-info :movie="$selectedMovie" />
+                        </div>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            {{ $selectedMovie->description }}
+                        </p>
+                        @if ($selectedShowtime)
+                        <div class="mt-4">
+                            <h6 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Showtime</h6>
+                            <p class="text-gray-700 dark:text-gray-400">{{ $selectedShowtime->date->date }} : {{ $selectedShowtime->showtime->start_time }} - {{ $selectedShowtime->showtime->end_time }}</p>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </section>
+        @endif
+
             @if ($errors->any())
                 <div id="flash-message" x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show"
                     class="fixed top-12 left-1/2 transform -translate-x-1/2 z-50 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg
                     shadow dark:text-gray-400 dark:bg-gray-800"
-                    role="alert">    
+                    role="alert">
                     <div
                         class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -38,118 +65,53 @@
                     </button>
                 </div>
             @endif
-            
-            <div x-data="{ tab: 'studio1' }">
-                <form action="{{ route('booking.store') }}" method="POST">
-                    @csrf
-                    {{-- <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                        <div class="sm:col-span-2">
-                            <label for="movie_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Movie
+
+            <form action="{{ route('booking.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="movie_id" id="movie_id" value="{{ $selectedMovie->id }}">
+                {{-- <div class="sm:col-span-2">
+                    <label for="dateshowtime_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Date Showtime
+                    </label>
+                    <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        @foreach ($dateshowtimes as $dateshowtime)
+                            <option value="{{ $dateshowtime->id }}" @if($dateshowtime->id == $selectedShowtime->id) selected @endif>
+                                {{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div> --}}
+
+                <div class="grid grid-cols-8 gap-4 mt-6">
+                    @foreach ($seats as $seat)
+                        @php
+                            $isDisabled = $seat->isBooked($selectedMovie->id, $selectedShowtime->id);
+                        @endphp
+
+                        <div>
+                            <label for="seat_id_{{ $seat->id }}" class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="seat_id[]" id="seat_id_{{ $seat->id }}"
+                                    value="{{ $seat->id }}"
+                                    class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700"
+                                    @if ($isDisabled)
+                                        checked disabled
+                                    @endif>
+                                <span class="lg:ml-2 text-gray-900 dark:text-white">
+                                    @if ($isDisabled)
+                                        <span class="text-red-600">{{ $seat->seat_number }}</span>
+                                    @else
+                                        {{ $seat->seat_number }}
+                                    @endif
+                                </span>
                             </label>
-                            <select name="movie_id" id="movie_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" >
-                                @forelse ($movies as $movie)
-                                    <option value="{{ $movie->id }}"
-                                    >{{ $movie->title }}</option>
-                                @empty
-                               1     <option value="">No movies available</option>
-                                @endforelse
-                            </select>
-                        </div> --}}
-                        
-                        <div class="sm:col-span-2">
-                            <label for="movie_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Movie
-                            </label>
-                            <select name="movie_id" id="movie_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                @foreach ($dateshowtimes as $dateshowtime) 
-                                <option value="{{ $dateshowtime->id }}"  @if($dateshowtime->id == $selectedShowtime->id) selected @endif>{{ $dateshowtime->movies->title }}</option>
-                                @endforeach
-                            </select>
-                            
-                            
                         </div>
-                        <div class="sm:col-span-2">
-                            <label for="dateshowtime_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Date Showtime
-                            </label>
-                            <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                @foreach ($dateshowtimes as $dateshowtime) 
-                                <option value="{{ $dateshowtime->id }}"  @if($dateshowtime->id == $selectedShowtime->id) selected @endif>{{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}</option>
-                                @endforeach
-                            </select>
-                            
-                        </div>
-                    </div>
-            
-                    {{-- <ul class="mt-4 hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-                        <li class="w-full focus-within:z-10">
-                            <a href="#" @click.prevent="tab = 'studio1'" :class="{ 'text-gray-900 bg-gray-100 dark:bg-gray-700 dark:text-white': tab === 'studio1', 'hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700': tab !== 'studio1' }" class="inline-block w-full p-4 border-r border-gray-200 dark:border-gray-700 rounded-s-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none">
-                                Studio 1
-                            </a>
-                        </li>
-                        <li class="w-full focus-within:z-10">
-                            <a href="#" @click.prevent="tab = 'studio2'" :class="{ 'text-gray-900 bg-gray-100 dark:bg-gray-700 dark:text-white': tab === 'studio2', 'hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700': tab !== 'studio2' }" class="inline-block w-full p-4 border-r border-gray-200 dark:border-gray-700 focus:ring-4 focus:ring-blue-300 focus:outline-none">
-                                Studio 2
-                            </a>
-                        </li>
-                    </ul>
-             --}}
-                    <div x-show="tab === 'studio1'">
-                        {{-- Content for Studio 1 --}}
-                        <div class="grid grid-cols-8 gap-4 mt-6">
-                            @foreach ($seats as $seat)
-                                @php
-                                    $isDisabled = false;
-                                    foreach ($movies as $movie) {
-                                        foreach ($dateshowtimes as $dateshowtime) {
-                                            if ($seat->isBooked($movie, $dateshowtime)) {
-                                                $isDisabled = true;
-                                                break 2; // keluar dari kedua loop
-                                            }
-                                        }
-                                    }
-                                @endphp
-                        
-                                <div>
-                                    <label for="seat_id_{{ $seat->id }}" class="inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" name="seat_id[]" id="seat_id_{{ $seat->id }}"
-                                            value="{{ $seat->id }}"
-                                            class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700"
-                                            @if ($isDisabled)
-                                                disabled
-                                            @endif>
-                                        <span class="lg:ml-2 text-gray-900 dark:text-white">
-                                            @if ($isDisabled)
-                                                <span class="text-red-600">{{ $seat->seat_number }}</span>
-                                            @else
-                                                {{ $seat->seat_number }}
-                                            @endif
-                                        </span>
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                        
-                        <div class="px-3 py-2 my-6 text-xs font-bold text-center text-white bg-gray-500 rounded-lg">
-                            SCREEN
-                        </div>
-                        @error('seats')
-                            <x-error-message :message="$message" />
-                        @enderror
-                    </div>
-            
-                    <div class="mt-4 flex justify-c">
-                        <button type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">
-                            Submit
-                        </button>
-                    </div>
-                    </div>
-                    
-                    
-                        
-                </form>
-            </div>            
+                    @endforeach
+                </div>
+                
+                <button type="submit" class="mt-6 text-white bg-sky-700 hover:bg-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Book Now
+                </button>
+            </form>
         </div>
     </section>
 @endsection
