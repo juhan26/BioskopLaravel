@@ -46,7 +46,7 @@ class BookingController extends Controller
 
         // dd($movies);
 
-        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie'));
+        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats'));
     }
 
     /**
