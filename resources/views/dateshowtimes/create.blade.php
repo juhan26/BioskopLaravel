@@ -37,14 +37,14 @@
             @endif
             <form action="{{ route('dateshowtime.store') }}" method="POST">
                 @csrf  
-                {{-- <div class="mb-4">
+                <div class="mb-4">
                     <label for="movie_id" class="block text-sm font-medium text-gray-700">Movie</label>
                     <select name="movie_id" id="movie_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         @foreach($movies as $movie)
                             <option value="{{ $movie->id }}">{{ $movie->title }}</option>
                         @endforeach
                     </select>
-                </div> --}}
+                </div>
 
                 <div class="mb-4">
                     <label for="date_id" class="block text-sm font-medium text-gray-700">Date</label>

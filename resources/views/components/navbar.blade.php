@@ -12,9 +12,6 @@
                     <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                         <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Movies</a>
                     </li>
-                    <li class="{{ request()->routeIs('booking.index') ? 'active' : '' }}">
-                        <a href="{{ route('booking.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Bookings</a>
-                    </li>
                     <li class="{{ request()->routeIs('showtimes.index') ? 'active' : '' }}">
                         <a href="{{ route('showtimes.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Showtimes</a>
                     </li>
@@ -89,7 +86,7 @@
         const dropdown = document.getElementById('dropdown');
         const button = document.querySelector('button[onclick="toggleDropdown()"]');
 
-        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+        if (!button?.contains(event.target) && !dropdown?.contains(event.target)) {
             dropdown.classList.add('hidden');
         }
     });

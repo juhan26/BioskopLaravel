@@ -57,8 +57,8 @@ class DateshowtimeController extends Controller
     {
         $dates = Date::all();
         $showtimes = Showtime::all();
-        // $movies = Movie::all();
-        return view('dateshowtimes.edit', compact('dateshowtime','dates','showtimes'));
+        $movies = Movie::all();
+        return view('dateshowtimes.edit', compact('dateshowtime','dates','showtimes', 'movies'));
     }
 
     /**

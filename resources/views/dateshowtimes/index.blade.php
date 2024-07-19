@@ -11,9 +11,9 @@
                     <th scope="col" class="px-6 py-3">
                         No
                     </th>
-                    {{-- <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Movie
-                    </th> --}}
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         Date
                     </th>
@@ -32,9 +32,10 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $index + 1 }}
                     </th>
-                    {{-- <td class="px-6 py-4">
+                    <td class="px-6 py-4">
+                        {{-- @dd($dateshowtime); --}}
                         {{ $dateshowtime->movies->title ?? 'No movie found' }}
-                    </td> --}}
+                    </td>
                     <td class="px-6 py-4">
                         {{ $dateshowtime->date->date ?? 'No date found' }}
                     </td>
