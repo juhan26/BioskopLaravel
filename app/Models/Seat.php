@@ -25,8 +25,8 @@ class Seat extends Model
 
   public function isBooked($movie, $dateshowtime)
 {
-        return $this->bookings()->where('movie_id', $movie->id)
-                                ->where('dateshowtime_id', $dateshowtime->id)
+        return $this->bookings()->where('movie_id', $movie)
+                                ->where('dateshowtime_id', $dateshowtime)
                                 ->exists();
 }
 
