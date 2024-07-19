@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('movies', MovieController::class);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
-
+    
 
     // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 
@@ -99,6 +99,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking/edit/{booking}', [App\Http\Controllers\BookingController::class, 'edit'])->name('booking.edit');
     Route::put('/booking/update/{booking}', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
     Route::delete('/booking/destroy/{booking}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
+    // Route::get('booking/create/{movie}/{showtime}', [BookingController::class, 'create'])->name('booking.create');
 
 
     //Studios(Sano)

@@ -86,25 +86,16 @@ class MovieController extends Controller
      * @param Movie $movie
      * @return View
      */
-    public function show(Movie $movie): View
+    public function show($id)
     {
+        // Ambil data film berdasarkan ID
+        $movie = Movie::findOrFail($id);
 
-    
-        // $dates = Date::all();
-        $dateshowtimes = Dateshowtime::all();
-        // $dates = Date::all();
-        // $showtimes = Showtime::all();
-        // dd($dates);
+        // Ambil data dateshowtimes yang terkait dengan film ini
+        $dateshowtimes = DateShowtime::where('movie_id', $id)->get();
 
-
-
-        // $currentDate = today('Asia/Jakarta')->format('Y-m-d');
-        // $currentTime = now('Asia/Jakarta')->format('H:i:s');
-
-        // $movie = $movie->loadDatesForCurrentWeek();
-        // dd($movie->dates);
-
-        return view('movies.show', compact('movie',  'dateshowtimes'));
+        // Kirim data movie dan dateshowtimes ke view
+        return view('movies.show', compact('movie', 'dateshowtimes'));
     }
 
     public function edit(Movie $movie)

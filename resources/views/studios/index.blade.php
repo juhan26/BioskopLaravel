@@ -15,7 +15,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($studios as $studio)
                 <div class="bg-white rounded-lg shadow-md p-5">
-                    <h5 class="text-xl font-bold mb-2">{{ $studio->name }}</h5>
+                     <h5 class="text-xl font-bold mb-2">{{ $studio->name }}</h5>
                     <br>
                     <a href="{{ route('studios.show', $studio->id) }}" class="text-indigo-600 hover:text-indigo-900 font-semibold">Detail</a>
                     <form action="{{ route('studios.destroy', $studio->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">

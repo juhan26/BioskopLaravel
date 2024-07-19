@@ -18,9 +18,9 @@
                     <div>
                         <a href="{{ route('movies.edit', $movie->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                     </div>
-                    <div>
+                    {{-- <div>
                         <a href="{{ route('booking.create', ['movie' => $movie->id]) }}" class="text-indigo-600 hover:text-indigo-900" id="movieButton">Bookings</a>
-                    </div>
+                    </div> --}}
                     <div>
                         <form action="{{ route('movies.destroy', $movie->id) }}" method="POST">
                             @csrf
@@ -32,7 +32,6 @@
             </div>
         </div>
     </section>
-
 
     {{-- Dates and showtimes list --}}
   <section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
@@ -47,48 +46,48 @@
                 @php
                     $previousDate = null;
                 @endphp
-            
+
                 @foreach ($dateshowtimes as $dateshowtime)
                     @if ($previousDate !== $dateshowtime->date->date)
                         @if (!is_null($previousDate))
-                            </ul> <!-- Closing ul for previous showtimes -->
-                        </div> <!-- Closing previous card -->
-                        <br> 
+                            </ul> 
+                        </div> 
+                        <br> <!-- Add spacing between cards -->
                         @endif
-            
+
                         <div class="border rounded-lg p-4">
                             <h3 class="text-lg font-semibold mb-2">{{ $dateshowtime->date->date }}</h3>
                             <ul>
                     @endif
-            
+
                     <li>
-                        <a href="{{ route('booking.create', ['showtime' => $dateshowtime->id]) }}"  
+                        <a href="{{ route('booking.create', ['showtime' => $dateshowtime->id], ['movie' => $movie->id]) }}"  
                                     class="flex w-full focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2" id="showtimeButton">
                                 {{ $dateshowtime->showtime->start_time }} - {{ $dateshowtime->showtime->end_time }}
                         </a>
                     </li>
-            
+
                     @php
                         $previousDate = $dateshowtime->date->date;
                     @endphp
-            
+
                 @endforeach
-            
+
                 @if (!is_null($previousDate))
-                            </ul> <!-- Closing ul for last set of showtimes -->
-                        </div> <!-- Closing last card -->
+                    </ul> 
+                </div> 
                 @endif
             </div>
-            
+
         </div>
 
         <script>
-            document.getElementById('showtimeButton').addEventListener('click', function(event) {
-                event.preventDefault(); // Mencegah navigasi default dari tombol pertama
+            // document.getElementById('showtimeButton')?.addEventListener('click', function(event) {
+            //     event.preventDefault(); // Mencegah navigasi default dari tombol pertama
         
-                // Menyimulasikan klik pada tombol kedua
-                document.getElementById('movieButton').click();
-            });
+            //     // Menyimulasikan klik pada tombol kedua
+            //     document.getElementById('movieButton')?.click();
+            // });
         </script>
     </section>
 @endsection
