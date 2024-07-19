@@ -79,7 +79,16 @@
                 <div class="mb-4">
                     <label for="ticket_price" class="block text-sm font-medium text-gray-700">Ticket Price</label>
                     <input type="number" name="ticket_price" id="ticket_price" value="{{ old('ticket_price', $movie->ticket_price) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
-                </div>                
+                </div>   
+                
+                <div class="mb-4">
+                    <label for="studio_id" class="block text-sm font-medium text-gray-700">Studio</label>
+                    <select name="studio_id" id="studio_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        @foreach($studios as $studio)
+                            <option value="{{ $studio->id }}">{{ $studio->name }}</option>
+                        @endforeach
+                    </select>
+                </div>               
 
                 <div class="flex justify-end">
                     <button type="submit" class="px-4 py-2 bg-sky-700 text-white rounded-md shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('booked_seats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('movie_id')->constrained();
-            $table->foreignId('dateshowtime_id')->constrained();
-            $table->foreignId('seat_id')->constrained();
+            $table->foreignId('booking_id');
+            $table->foreignId('seat_id');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('booked_seats');
     }
 };

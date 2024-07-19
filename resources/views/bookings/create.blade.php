@@ -42,7 +42,7 @@
             <div x-data="{ tab: 'studio1' }">
                 <form action="{{ route('booking.store') }}" method="POST">
                     @csrf
-                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    {{-- <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div class="sm:col-span-2">
                             <label for="movie_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Movie
@@ -55,19 +55,30 @@
                                1     <option value="">No movies available</option>
                                 @endforelse
                             </select>
-                        </div>
+                        </div> --}}
                         
+                        <div class="sm:col-span-2">
+                            <label for="movie_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Movie
+                            </label>
+                            <select name="movie_id" id="movie_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                @foreach ($dateshowtimes as $dateshowtime) 
+                                <option value="{{ $dateshowtime->id }}"  @if($dateshowtime->id == $selectedShowtime->id) selected @endif>{{ $dateshowtime->movies->title }}</option>
+                                @endforeach
+                            </select>
+                            
+                            
+                        </div>
                         <div class="sm:col-span-2">
                             <label for="dateshowtime_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Date Showtime
                             </label>
-                            <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" >
-                                @forelse ($dateshowtimes as $dateshowtime)
-                                    <option value="{{ $dateshowtime->id }}"  >{{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}</option>
-                                @empty
-                                    <option value="">No dates available</option>
-                                @endforelse
+                            <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                @foreach ($dateshowtimes as $dateshowtime) 
+                                <option value="{{ $dateshowtime->id }}"  @if($dateshowtime->id == $selectedShowtime->id) selected @endif>{{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}</option>
+                                @endforeach
                             </select>
+                            
                         </div>
                     </div>
             
@@ -88,16 +99,28 @@
                         {{-- Content for Studio 1 --}}
                         <div class="grid grid-cols-8 gap-4 mt-6">
                             @foreach ($seats as $seat)
+                                @php
+                                    $isDisabled = false;
+                                    foreach ($movies as $movie) {
+                                        foreach ($dateshowtimes as $dateshowtime) {
+                                            if ($seat->isBooked($movie, $dateshowtime)) {
+                                                $isDisabled = true;
+                                                break 2; // keluar dari kedua loop
+                                            }
+                                        }
+                                    }
+                                @endphp
+                        
                                 <div>
                                     <label for="seat_id_{{ $seat->id }}" class="inline-flex items-center cursor-pointer">
                                         <input type="checkbox" name="seat_id[]" id="seat_id_{{ $seat->id }}"
                                             value="{{ $seat->id }}"
                                             class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700"
-                                            @if ($seat->isBooked($movies->first(), $dateshowtimes->first()))
+                                            @if ($isDisabled)
                                                 disabled
                                             @endif>
                                         <span class="lg:ml-2 text-gray-900 dark:text-white">
-                                            @if ($seat->isBooked($movies->first(), $dateshowtimes->first()))
+                                            @if ($isDisabled)
                                                 <span class="text-red-600">{{ $seat->seat_number }}</span>
                                             @else
                                                 {{ $seat->seat_number }}
@@ -107,9 +130,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
-                    
-                    
+                        
                         <div class="px-3 py-2 my-6 text-xs font-bold text-center text-white bg-gray-500 rounded-lg">
                             SCREEN
                         </div>
@@ -118,11 +139,15 @@
                         @enderror
                     </div>
             
-                    <div class="mt-4 flex justify-end">
+                    <div class="mt-4 flex justify-c">
                         <button type="submit" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">
                             Submit
                         </button>
                     </div>
+                    </div>
+                    
+                    
+                        
                 </form>
             </div>            
         </div>
