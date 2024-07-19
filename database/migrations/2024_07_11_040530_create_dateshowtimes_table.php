@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dateshowtimes', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('movie_id')->constrained();
+            $table->foreignId('movie_id')->constrained();
             $table->foreignId('date_id')->constrained();
             $table->foreignId('showtime_id')->constrained();
             $table->timestamps();

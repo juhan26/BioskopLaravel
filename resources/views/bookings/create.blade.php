@@ -49,8 +49,8 @@
                             </label>
                             <select name="movie_id" id="movie_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" >
                                 @forelse ($movies as $movie)
-                                    <option value="{{ $movie->id }}" @if ($movie->id == $selectedMovie->id) selected
-                                    @endif >{{ $movie->title }}</option>
+                                    <option value="{{ $movie->id }}"
+                                    >{{ $movie->title }}</option>
                                 @empty
                                     <option value="">No movies available</option>
                                 @endforelse
@@ -63,8 +63,7 @@
                             </label>
                             <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" >
                                 @forelse ($dateshowtimes as $dateshowtime)
-                                    <option value="{{ $dateshowtime->id }}"  @if ( $dateshowtime->id == $selectedShowtime->id ) selected
-                                        @endif >{{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}</option>
+                                    <option value="{{ $dateshowtime->id }}"  >{{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}</option>
                                 @empty
                                     <option value="">No dates available</option>
                                 @endforelse
