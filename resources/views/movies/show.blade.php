@@ -82,12 +82,12 @@
         </div>
 
         <script>
-            document.getElementById('showtimeButton').addEventListener('click', function(event) {
-                event.preventDefault(); // Mencegah navigasi default dari tombol pertama
+            // document.getElementById('showtimeButton')?.addEventListener('click', function(event) {
+            //     event.preventDefault(); // Mencegah navigasi default dari tombol pertama
         
-                // Menyimulasikan klik pada tombol kedua
-                document.getElementById('movieButton').click();
-            });
+            //     // Menyimulasikan klik pada tombol kedua
+            //     document.getElementById('movieButton')?.click();
+            // });
         </script>
     </section>
 @endsection

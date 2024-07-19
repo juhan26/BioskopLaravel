@@ -86,7 +86,7 @@
         const dropdown = document.getElementById('dropdown');
         const button = document.querySelector('button[onclick="toggleDropdown()"]');
 
-        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+        if (!button?.contains(event.target) && !dropdown?.contains(event.target)) {
             dropdown.classList.add('hidden');
         }
     });
