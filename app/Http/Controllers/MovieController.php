@@ -90,9 +90,9 @@ class MovieController extends Controller
     {
         // Ambil data film berdasarkan ID
         $movie = Movie::findOrFail($id);
-
         // Ambil data dateshowtimes yang terkait dengan film ini
         $dateshowtimes = DateShowtime::where('movie_id', $id)->get();
+        
 
         // Kirim data movie dan dateshowtimes ke view
         return view('movies.show', compact('movie', 'dateshowtimes'));
@@ -100,7 +100,12 @@ class MovieController extends Controller
 
     public function edit(Movie $movie)
 {
-    return view('movies.edit', compact('movie'));
+    $studios = Studio::select(DB::raw('MIN(id) as id, name'))
+        ->groupBy('name')
+        ->get();
+        $existingStudioIds = Movie::pluck('studio_id')->toArray();
+
+    return view('movies.edit', compact('movie', 'studios'));
 }
 
 public function update(Request $request, Movie $movie)

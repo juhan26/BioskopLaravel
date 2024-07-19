@@ -40,13 +40,13 @@ class BookingController extends Controller
         $seats = Seat::all();
 
         $selectedShowtime = Dateshowtime::find($request->showtime);
-        $selectedMovie = Movie::find($request);
+        // $selectedMovie = Movie::find($request);
 
         // dd($selectedMovie);
 
         // dd($movies);
 
-        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats'));
+        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime'));
     }
 
     /**
