@@ -38,12 +38,20 @@ class BookingController extends Controller
      {
          $movies = Movie::all();
          $dateshowtimes = Dateshowtime::all();
+
          $seats = Seat::all();
+
+        $bookedSeats = Booking::pluck('seat_id')->toArray();
+        
+
+        $availableSeats = $seats->filter(function($seat) {
+            return !$seat->bookings->count();
+        })->count();
  
          $selectedShowtime = Dateshowtime::find($request->showtime);
          $selectedMovie = Movie::find($request->movie);  
  
-         return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie'));
+         return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie', 'availableSeats'));
      }
     /**
      * Store a newly created resource in storage.

@@ -14,6 +14,7 @@
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {{ $movie->description }}
                 </p>
+             
                 <div class="flex justify-between">
                     <div>
                         <a href="{{ route('movies.edit', $movie->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>

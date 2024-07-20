@@ -1,5 +1,3 @@
-{{-- // resources/views/bookings/create.blade.php --}}
-
 @extends('layouts.app')
 
 @section('content')
@@ -10,29 +8,30 @@
             </h2>
 
             @if ($selectedMovie)
-            <section id="movie-details" class="p-6 max-w-screen-lg mx-auto">
-                <div class="flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow-lg w-full max-w-screen-lg mx-auto md:flex-row md:max-w-7xl dark:border-gray-700 dark:bg-gray-800">
-                    <img class="ml-4 object-cover w-full h-auto md:w-1/2 md:h-full rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('storage/' . $selectedMovie->poster_url) }}" alt="{{ $selectedMovie->title }}" />
-                    <div class="flex flex-col justify-between p-4 leading-normal md:w-1/2">
-                        <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {{ $selectedMovie->title }}
-                        </h5>
-                        <div class="flex flex-wrap my-3">
-                            <x-movie-info :movie="$selectedMovie" />
+                <section id="movie-details" class="p-6 max-w-screen-lg mx-auto">
+                    <div class="flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow-md w-full max-w-screen-lg mx-auto md:flex-row md:max-w-7xl dark:border-gray-700 dark:bg-gray-800">
+                        <img class="ml-4 object-cover w-full h-auto md:w-1/2 md:h-full rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('storage/' . $selectedMovie->poster_url) }}" alt="{{ $selectedMovie->title }}" />
+                        <div class="flex flex-col justify-between p-4 leading-normal md:w-1/2">
+                            <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                {{ $selectedMovie->title }}
+                            </h5>
+                            <div class="flex flex-wrap my-3">
+                                <x-movie-info :movie="$selectedMovie" />
+                            </div>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 opacity-3" >
+                                {{ $selectedMovie->description }}
+                            </p>
+
+                            @if ($selectedShowtime)
+                            <div class="mt-4">
+                                <h6 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Showtime</h6>
+                                <p class="text-gray-700 dark:text-gray-400">{{ $selectedShowtime->date->date }} : {{ $selectedShowtime->showtime->start_time }} - {{ $selectedShowtime->showtime->end_time }}</p>
+                            </div>
+                            @endif
                         </div>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            {{ $selectedMovie->description }}
-                        </p>
-                        @if ($selectedShowtime)
-                        <div class="mt-4">
-                            <h6 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Showtime</h6>
-                            <p class="text-gray-700 dark:text-gray-400">{{ $selectedShowtime->date->date }} : {{ $selectedShowtime->showtime->start_time }} - {{ $selectedShowtime->showtime->end_time }}</p>
-                        </div>
-                        @endif
                     </div>
-                </div>
-            </section>
-        @endif
+                </section>
+            @endif
 
             @if ($errors->any())
                 <div id="flash-message" x-data="{ show: true }" x-init="setTimeout(() => show = false, 5000)" x-show="show"
@@ -66,21 +65,20 @@
                 </div>
             @endif
 
+            <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md  dark:border-gray-700 dark:bg-gray-800">
+            <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                Available Seats
+                <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                    <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                        {{$availableSeats}}
+                    </span>
+            </h3>
+            </div>
+
             <form action="{{ route('booking.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="movie_id" id="movie_id" value="{{ $selectedMovie->id }}">
-                {{-- <div class="sm:col-span-2">
-                    <label for="dateshowtime_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Date Showtime
-                    </label>
-                    <select name="dateshowtime_id" id="dateshowtime_id" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                        @foreach ($dateshowtimes as $dateshowtime)
-                            <option value="{{ $dateshowtime->id }}" @if($dateshowtime->id == $selectedShowtime->id) selected @endif>
-                                {{ $dateshowtime->date->date }} : {{ $dateshowtime->showtime->start_time }}-{{ $dateshowtime->showtime->end_time }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div> --}}
+                <input type="hidden" name="dateshowtime_id" value="{{ $selectedShowtime->id }}">
 
                 <div class="grid grid-cols-8 gap-4 mt-6">
                     @foreach ($seats as $seat)
@@ -108,9 +106,7 @@
                     @endforeach
                 </div>
                 
-                <button type="submit" class="mt-6 text-white bg-sky-700 hover:bg-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                    Book Now
-                </button>
+                <button type="submit" class="mt-6 text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Confirm</button>
             </form>
         </div>
     </section>
