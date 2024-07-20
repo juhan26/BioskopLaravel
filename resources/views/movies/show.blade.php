@@ -34,51 +34,50 @@
         </div>
     </section>
 
-    {{-- Dates and showtimes list --}}
-  <section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
+   {{-- Dates and showtimes list --}}
+<section id="dates-showtimes" class="p-6 max-w-screen-lg mx-auto">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold mb-4 text-center">
+            Dates and Showtimes
+        </h2>
 
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            @php
+                $previousDate = null;
+            @endphp
 
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-4 text-center">
-                Dates and Showtimes
-            </h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                @php
-                    $previousDate = null;
-                @endphp
-
-                @foreach ($dateshowtimes as $dateshowtime)
-                    @if ($previousDate !== $dateshowtime->date->date)
-                        @if (!is_null($previousDate))
-                            </ul> 
-                        </div> 
-                        <br> <!-- Add spacing between cards -->
-                        @endif
-
-                        <div class="border rounded-lg p-4">
-                            <h3 class="text-lg font-semibold mb-2">{{ $dateshowtime->date->date }}</h3>
-                            <ul>
+            @foreach ($dateshowtimes as $dateshowtime)
+                @if ($previousDate !== $dateshowtime->date->date)
+                    @if (!is_null($previousDate))
+                        </ul> 
+                    </div> 
                     @endif
 
-                    <li>
-                        <a href="{{ route('booking.create', ['showtime' => $dateshowtime->id,'movie' => $movie->id]) }}"  
-                                    class="flex w-full focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2" id="showtimeButton">
-                                {{ $dateshowtime->showtime->start_time }} - {{ $dateshowtime->showtime->end_time }}
-                        </a>
-                    </li>
-
-                    @php
-                        $previousDate = $dateshowtime->date->date;
-                    @endphp
-
-                @endforeach
-
-                @if (!is_null($previousDate))
-                    </ul> 
-                </div> 
+                    <div class="border rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-2">{{ $dateshowtime->date->date }}</h3>
+                        <ul>
                 @endif
-            </div>
+
+                <li class="mb-2">
+                    <a href="{{ route('booking.create', ['showtime' => $dateshowtime->id, 'movie' => $movie->id]) }}"  
+                       class="flex w-full focus:outline-none text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs p-2 mr-2 mb-2">
+                        {{ $dateshowtime->showtime->start_time }} - {{ $dateshowtime->showtime->end_time }}
+                    </a>
+                </li>
+
+                @php
+                    $previousDate = $dateshowtime->date->date;
+                @endphp
+
+            @endforeach
+
+            @if (!is_null($previousDate))
+                </ul> 
+            </div> 
+            @endif
+        </div>
+    </div>
+</section>
 
         </div>
 
