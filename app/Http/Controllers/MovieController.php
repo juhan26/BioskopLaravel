@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Date;
 use App\Models\Dateshowtime;
 use App\Models\Movie;
+
+use App\Models\Seat;
 use App\Models\Showtime;
 use App\Models\Studio;
-
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,12 +27,19 @@ class MovieController extends Controller
 
      public function create()
     {
+        
         $studios = Studio::select(DB::raw('MIN(id) as id, name'))
         ->groupBy('name')
         ->get();
         $existingStudioIds = Movie::pluck('studio_id')->toArray();
+        
+        $seats = Seat::all();
 
-        return view('movies.create', compact('studios', 'existingStudioIds'));
+        $availableSeats = $seats->filter(function($seat) {
+            return !$seat->bookings->count();
+        })->count();
+        
+        return view('movies.create', compact('studios', 'existingStudioIds', 'availableSeats'));
     }
 
      
@@ -89,8 +98,12 @@ class MovieController extends Controller
     public function show($id)
     {
         // Ambil data film berdasarkan ID
+
         $movie = Movie::findOrFail($id);
+        
         // Ambil data dateshowtimes yang terkait dengan film ini
+    
+
         $dateshowtimes = DateShowtime::where('movie_id', $id)->get();
         
 
