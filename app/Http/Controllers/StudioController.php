@@ -76,11 +76,22 @@ class StudioController extends Controller
      */
     public function show(Studio $studio)
 {
+    $studioUlala = Studio::where('name',$studio->name)->get();
+    $tampung = [];
+
+    foreach($studioUlala as $studio) {
+        array_push($tampung, $studio->seat_id);
+    }
+
+    // dd($tampung);
+
+
+
     // Ambil kursi yang terkait dengan studio ini
-    $seats = Seat::all() ;
+    $seats = Seat::whereIn('id', $tampung)->get();
 
     // Kirim data studio dan kursi ke view
-    return view('studios.show', compact('studio', 'seats'));
+    return view('studios.show', compact('studio', 'seats', 'studioUlala'));
 }
 
 
