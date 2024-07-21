@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateDateshowtimeRequest extends FormRequest
 {
@@ -19,18 +20,25 @@ class UpdateDateshowtimeRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'date_id'=> ['required', 'exists:dates,id'],
-            'showtime_id'=> ['required', 'exists:showtimes,id'],
+            'movie_id' => 'required|exists:movies,id',
+            'date_id' => 'required|exists:dates,id',
+            'showtime_id' => [
+                'required',
+                Rule::unique('dateshowtimes')->ignore($this->route('dateshowtime'))->where(function ($query) {
+                    return $query->where('movie_id', $this->movie_id)
+                                 ->where('showtime_id', $this->showtime_id);
+                }),
+            ],
         ];
     }
-    public function messages(): array
+
+    public function messages()
     {
         return [
-            'required' => 'Field :attribute wajib diisi.',
-            'exists' => 'Field :attribute tidak valid.',
+            'showtime_id.unique' => 'Date showtime sudah di gunakan dengan movie yang sama',
         ];
     }
 }
