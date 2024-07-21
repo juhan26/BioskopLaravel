@@ -65,14 +65,15 @@
                 </div>
             @endif
 
-            <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md  dark:border-gray-700 dark:bg-gray-800">
-            <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                Available Seats
-                <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                    <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                        {{$availableSeats}}
+            <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800">
+                <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                    Available Seats
+                    <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                            {{ $availableSeats->count() }}
+                        </span>
                     </span>
-            </h3>
+                </h3>
             </div>
 
             <form action="{{ route('booking.store') }}" method="POST">
