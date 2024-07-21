@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('date_id')->constrained();
             $table->foreignId('showtime_id')->constrained();
             $table->timestamps();
+
+            $table->unique(['movie_id', 'showtime_id']);
         });
     }
 
