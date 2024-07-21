@@ -15,8 +15,9 @@ class Seat extends Model
         return $this->hasMany(Booking::class); //
     }
     
-    public function studios(){
-      return $this->hasMany(Studio::class); //
+    public function studios()
+    {
+        return $this->belongsToMany(Studio::class, 'studio_seat', 'seat_id', 'studio_id');
     }
 
     public function bookedseats(){

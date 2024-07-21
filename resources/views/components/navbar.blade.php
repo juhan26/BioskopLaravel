@@ -1,4 +1,4 @@
-<nav class="border-gray-200 bg-sky-700 border shadow-lg">
+<nav class="border-gray-200 bg-sky-700 border shadow-lg sticky top-0 z-50">
     <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <h1>
             <a href="{{ route('home') }}"
@@ -25,7 +25,7 @@
                         <a href="{{ route('seat.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Seats</a>
                     </li>
                     <li class="{{ request()->routeIs('booking.index') ? 'active' : '' }}">
-                        <a href="{{ route('booking.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Booking</a>
+                        <a href="{{ route('booking.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Bookings</a>
                     </li>
                     <li class="{{ request()->routeIs('studios.index') ? 'active' : '' }}">
                         <a href="{{ route('studios.index') }}" class="block px-4 py-2 text-sm text-gray-50 hover:bg-sky-800">Studios</a>

@@ -45,6 +45,12 @@
                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                     <textarea name="description" id="description" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" ></textarea>
                 </div>
+
+                {{-- @if(isset($movie) && $movie->poster_url)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="Current Poster" class="h-32 w-auto mb-4">
+                    </div>
+                @endif --}}
                 <div class="mb-4">
                     <label for="poster_url" class="block text-sm font-medium text-gray-700">Poster</label>
                     <input type="file" name="poster_url" id="poster_url" class="mt-1 block ml-4 pr-5 w-full text-smx     text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" >
@@ -66,7 +72,7 @@
                     <input type="number" name="ticket_price" id="ticket_price" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>         
                 <div class="mb-4">
-                    <label for="studio_id" class="block text-sm font-medium text-gray-700">Studio</label>
+                    <label for="studio  _id" class="block text-sm font-medium text-gray-700">Studio</label>
                     <select name="studio_id" id="studio_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         @foreach($studios as $studio)
                             <option value="{{ $studio->id }}">{{ $studio->name }}</option>

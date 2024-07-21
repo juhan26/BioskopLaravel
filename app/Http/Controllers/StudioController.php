@@ -15,26 +15,26 @@ class StudioController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    // Ambil semua data studio
-    $studios = Studio::all();
+    {
+        // Ambil semua data studio
+        $studios = Studio::all();
 
-    // Array untuk menyimpan nama-nama studio yang sudah ada
-    $existingStudios = [];
+        // Array untuk menyimpan nama-nama studio yang sudah ada
+        $existingStudios = [];
 
-    // Filter studio untuk menampilkan nama yang unik
-    $filteredStudios = $studios->filter(function ($studio) use (&$existingStudios) {
-        if (in_array($studio->name, $existingStudios)) {
-            return false;
-        } else {
-            $existingStudios[] = $studio->name;
-            return true;
-        }
-    });
+        // Filter studio untuk menampilkan nama yang unik
+        $filteredStudios = $studios->filter(function ($studio) use (&$existingStudios) {
+            if (in_array($studio->name, $existingStudios)) {
+                return false;
+            } else {
+                $existingStudios[] = $studio->name;
+                return true;
+            }
+        });
 
-    // Kirim data studio yang sudah difilter ke view
-    return view('studios.index', ['studios' => $filteredStudios]);
-}
+        // Kirim data studio yang sudah difilter ke view
+        return view('studios.index', ['studios' => $filteredStudios]);
+    }
 
 
     /**
@@ -52,6 +52,8 @@ class StudioController extends Controller
     public function store(StoreStudioRequest $request)
     {
 
+        $selectedSeats = Seat::whereIn('id', $request->input('seat_id', []))->get();
+
         $data = $request->validated();
         if (is_array($request->seat_id)) {
             // Loop through each seat_id
@@ -67,13 +69,14 @@ class StudioController extends Controller
             // Create a booking if seat_id is not an array (fallback case)
             Studio::create($request->all());
         }
-        
+
         return redirect()->route('studios.index')->with('success', 'Studio created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
+
     public function show(Studio $studio)
 {
     $studioUlala = Studio::where('name',$studio->name)->get();
@@ -95,13 +98,14 @@ class StudioController extends Controller
 }
 
 
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Studio $studio)
     {
         $seats = Seat::all();
-        return view('studios.edit', compact('studio','seats'));
+        return view('studios.edit', compact('studio', 'seats'));
     }
 
     /**
@@ -121,13 +125,13 @@ class StudioController extends Controller
         try {
             // Ambil semua studio dengan nama yang sama
             $studiosWithSameName = Studio::where('name', $studio->name)->get();
-    
+
             // Hapus semua studio tersebut
             foreach ($studiosWithSameName as $studioToDelete) {
                 $studioToDelete->delete();
             }
-    
-            return redirect()->route('studios.index')->with('success', 'Studios with the same name deleted successfully.');
+
+            return redirect()->route('studios.index')->with('success', 'Studios deleted successfully.');
         } catch (QueryException $e) {
             if ($e->getCode() === "23000") {
                 return redirect()->route('studios.index')->with('error', 'Studios could not be deleted because they have related records.');
