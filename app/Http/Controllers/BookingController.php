@@ -35,24 +35,31 @@ class BookingController extends Controller
      */
    
      public function create(Request $request)
-     {
-         $movies = Movie::all();
-         $dateshowtimes = Dateshowtime::all();
+    {
+        $movies = Movie::all();
+        $dateshowtimes = Dateshowtime::all();
 
-         $seats = Seat::all();
+        $seats = Seat::all();
 
-        $bookedSeats = Booking::pluck('seat_id')->toArray();
-        
+        // Dapatkan ID showtime yang dipilih
+        $selectedShowtimeId = $request->input('showtime');
 
-        $availableSeats = $seats->filter(function($seat) {
-            return !$seat->bookings->count();
-        })->count();
- 
-         $selectedShowtime = Dateshowtime::find($request->showtime);
-         $selectedMovie = Movie::find($request->movie);  
- 
-         return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie', 'availableSeats'));
-     }
+        // Dapatkan semua kursi yang telah dipesan untuk showtime dan film yang dipilih
+        $bookedSeats = Booking::where('dateshowtime_id', $selectedShowtimeId)
+                            ->pluck('seat_id')
+                            ->toArray();
+
+        // Filter kursi yang belum ter-booking
+        $availableSeats = $seats->filter(function($seat) use ($bookedSeats) {
+            return !in_array($seat->id, $bookedSeats);
+        });
+
+        $selectedShowtime = Dateshowtime::find($request->showtime);
+        $selectedMovie = Movie::find($request->movie);
+
+        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie', 'availableSeats'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
