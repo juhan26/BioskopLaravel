@@ -10,8 +10,9 @@ class Studio extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function seats(){
-        return $this->belongsTo(Seat::class, 'seat_id');
+    public function seats()
+    {
+        return $this->belongsToMany(Seat::class, 'studio_seat', 'studio_id', 'seat_id');
     }
     public function movies(){
         return $this->hasMany(Movie::class);
