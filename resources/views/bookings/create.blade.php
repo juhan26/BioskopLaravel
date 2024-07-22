@@ -15,9 +15,17 @@
                             <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 {{ $selectedMovie->title }}
                             </h5>
+                            <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                {{ $total }}
+                            </h5>
                             <div class="flex flex-wrap my-3">
                                 <x-movie-info :movie="$selectedMovie" />
+                                
                             </div>
+                            <span
+                                class="bg-cyan-100 text-cyan-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-cyan-400 border border-green-400">
+                                Total Price: Rp {{ number_format($total) }}
+                            </span>
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 opacity-3" >
                                 {{ $selectedMovie->description }}
                             </p>
@@ -65,16 +73,32 @@
                 </div>
             @endif
 
-            <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800">
-                <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                    Available Seats
-                    <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                        <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                            {{ $availableSeats->count() }}
+            <div class="flex space-x-4">
+                <!-- Available Seats Section -->
+                <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800">
+                    <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                        Available Seats
+                        <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                            <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                {{ $availableSeats->count() }}
+                            </span>
                         </span>
-                    </span>
-                </h3>
+                    </h3>
+                </div>
+            
+                <!-- Total Section -->
+                <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800">
+                    <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                        Total
+                        <span class="bg-100 text-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                            <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                {{ number_format($total) }}
+                            </span>
+                        </span>
+                    </h3>
+                </div>
             </div>
+            
 
             <form action="{{ route('booking.store') }}" method="POST">
                 @csrf
