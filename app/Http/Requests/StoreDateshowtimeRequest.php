@@ -38,7 +38,7 @@ class StoreDateshowtimeRequest extends FormRequest
     public function messages()
     {
         return [
-            'showtime_id.unique' => 'Date showtime sudah di gunakan dengan movie yang sama',
+             'showtime_id.unique' => 'Date showtime sudah di gunakan di movie yang sebelumnya',
         ];
     }
 }
