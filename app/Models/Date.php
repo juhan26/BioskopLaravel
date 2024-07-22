@@ -16,7 +16,7 @@ class Date extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['date'];
+    protected $guarded = ['id'];
 
     public function dateshowtimes()
     {
