@@ -55,9 +55,14 @@ class BookingController extends Controller
         });
 
         $selectedShowtime = Dateshowtime::find($request->showtime);
+        $selectedMoviePrice = $selectedShowtime->movies;
+        $ticketPrice = $selectedMoviePrice->ticket_price;
+
+        $total = $ticketPrice * count($bookedSeats);
+
         $selectedMovie = Movie::find($request->movie);
 
-        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie', 'availableSeats'));
+        return view('bookings.create', compact('movies', 'dateshowtimes', 'seats', 'selectedShowtime', 'selectedMovie', 'availableSeats', 'total'));
     }
 
     /**
