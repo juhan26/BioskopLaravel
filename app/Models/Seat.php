@@ -17,12 +17,13 @@ class Seat extends Model
     
     public function studios()
     {
-        return $this->belongsToMany(Studio::class, 'studio_seat', 'seat_id', 'studio_id');
-    }
+        return $this->belongsTo(Studio::class, 'studio_id');
+    }   
 
     public function bookedseats(){
       return $this->hasMany(BookedSeat::class);
   }
+  
 
   public function isBooked($movie, $dateshowtime) 
 {

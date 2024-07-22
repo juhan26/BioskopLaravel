@@ -22,8 +22,15 @@ class StoreStudioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required', 'unique:studios,name'],
-            'seat_id'=>['required', 'exists:seats,id'],
+            'name' => ['required', 'unique:studios,name'],
+            'seat_id' => ['required', 'exists:seats,id', 'min:64'],
+        ];
+    }
+    
+    public function messages(): array
+    {
+        return [
+            'seat_id.min' => 'Jumlah seat harus 64 seat per studio.',
         ];
     }
 }

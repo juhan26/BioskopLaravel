@@ -9,7 +9,6 @@ use App\Models\Dateshowtime;
 use App\Models\Movie;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
 
 class SeatController extends Controller
 {
@@ -36,12 +35,11 @@ class SeatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSeatRequest $request)
     {
-        // dd($request->input('seat_id', []));
         $selectedSeats = $request->input('seat_id');
 
-        Seat::create($request->all);
+        Seat::create($request->all());
         return redirect()->route('seat.index')->with('success','Seat Successfully Created');
     }
 

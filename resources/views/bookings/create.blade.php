@@ -15,30 +15,18 @@
                             <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 {{ $selectedMovie->title }}
                             </h5>
-                            <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                {{ $total }}
-                            </h5>
                             <div class="flex flex-wrap my-3">
                                 <x-movie-info :movie="$selectedMovie" />
-                                
                             </div>
-<<<<<<< HEAD
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 opacity-3">
-=======
-                            <span
-                                class="bg-cyan-100 text-cyan-800 text-sm font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-cyan-400 border border-green-400">
-                                Total Price: Rp {{ number_format($total) }}
-                            </span>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 opacity-3" >
->>>>>>> fb7f67c019b78149f31c62bfab747d8124e32b3b
                                 {{ $selectedMovie->description }}
                             </p>
 
                             @if ($selectedShowtime)
-                            <div class="mt-4">
-                                <h6 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Showtime</h6>
-                                <p class="text-gray-700 dark:text-gray-400">{{ $selectedShowtime->date->date }} : {{ $selectedShowtime->showtime->start_time }} - {{ $selectedShowtime->showtime->end_time }}</p>
-                            </div>
+                                <div class="mt-4">
+                                    <h6 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Showtime</h6>
+                                    <p class="text-gray-700 dark:text-gray-400">{{ $selectedShowtime->date->date }} : {{ $selectedShowtime->showtime->start_time }} - {{ $selectedShowtime->showtime->end_time }}</p>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -50,11 +38,10 @@
                     class="fixed top-12 left-1/2 transform -translate-x-1/2 z-50 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg
                     shadow dark:text-gray-400 dark:bg-gray-800"
                     role="alert">
-                    <div
-                        class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 0 010-1.414z"
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span class="sr-only">Error icon</span>
@@ -70,7 +57,7 @@
                         <span class="sr-only">Close</span>
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 0 010-1.414z"
                                 clip-rule="evenodd"></path>
                         </svg>
                     </button>
@@ -89,7 +76,7 @@
                         </span>
                     </h3>
                 </div>
-            
+
                 <!-- Total Section -->
                 <div class="pt-3 py-2 pl-4 max-w-fit bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800">
                     <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
@@ -102,7 +89,6 @@
                     </h3>
                 </div>
             </div>
-            
 
             <form action="{{ route('booking.store') }}" method="POST">
                 @csrf
@@ -122,12 +108,12 @@
 
                                 <div
                                     class="w-10 h-10 text-gray-800 font-bold flex items-center justify-center border border-gray-400 rounded-lg
-                                     {{ $isDisabled ? 'text-white bg-red-600 border-red-600 cursor-not-allowed' : 'bg-gray-200 peer-checked:bg-sky-600 peer-checked:border-sky-600 peer-checked:text-white cursor-pointer' }}">
+                                    {{ $isDisabled ? 'text-white bg-red-600 border-red-600 cursor-not-allowed' : 'bg-gray-200 peer-checked:bg-sky-600 peer-checked:border-sky-600 peer-checked:text-white cursor-pointer' }}">
                                     {{ $seat->seat_number }}
                                 </div>
                             </label>
                         </div>
-                    @endforeach     
+                    @endforeach
                 </div>
 
                 <div class="flex items-center mt-6">
@@ -137,6 +123,12 @@
                     </button>
                 </div>
             </form>
+
+            @if(isset($qrCodeImage))
+                <div class="mt-6 flex justify-center">
+                    <img src="data:image/png;base64,{{ $qrCodeImage }}" alt="Booking QR Code">
+                </div>
+            @endif
         </div>
     </section>
 @endsection

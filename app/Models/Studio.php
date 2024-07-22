@@ -21,4 +21,6 @@ class Studio extends Model
     public function showtime(){
         return $this->hasMany(Movie::class);
     }
+
+    
 }
