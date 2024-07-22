@@ -24,7 +24,7 @@ class Seat extends Model
       return $this->hasMany(BookedSeat::class);
   }
 
-  public function isBooked($movie, $dateshowtime)
+  public function isBooked($movie, $dateshowtime) 
 {
         return $this->bookings()->where('movie_id', $movie)
                                 ->where('dateshowtime_id', $dateshowtime)

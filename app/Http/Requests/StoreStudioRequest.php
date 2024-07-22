@@ -23,7 +23,7 @@ class StoreStudioRequest extends FormRequest
     {
         return [
             'name'=>['required', 'unique:studios,name'],
-            'seat_id'=>['required', 'exists:seats,id']
+            'seat_id'=>['required', 'exists:seats,id'],
         ];
     }
 }

@@ -18,7 +18,7 @@
                             <div class="flex flex-wrap my-3">
                                 <x-movie-info :movie="$selectedMovie" />
                             </div>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 opacity-3" >
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 opacity-3">
                                 {{ $selectedMovie->description }}
                             </p>
 
@@ -90,24 +90,24 @@
                         <div>
                             <label for="seat_id_{{ $seat->id }}" class="inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="seat_id[]" id="seat_id_{{ $seat->id }}"
-                                    value="{{ $seat->id }}"
-                                    class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700"
-                                    @if ($isDisabled)
-                                        checked disabled
-                                    @endif>
-                                <span class="lg:ml-2 text-gray-900 dark:text-white">
-                                    @if ($isDisabled)
-                                        <span class="text-red-600">{{ $seat->seat_number }}</span>
-                                    @else
-                                        {{ $seat->seat_number }}
-                                    @endif
-                                </span>
+                                    value="{{ $seat->id }}" class="sr-only peer" {{ $isDisabled ? 'disabled' : '' }}>
+
+                                <div
+                                    class="w-10 h-10 text-gray-800 font-bold flex items-center justify-center border border-gray-400 rounded-lg
+                                     {{ $isDisabled ? 'text-white bg-red-600 border-red-600 cursor-not-allowed' : 'bg-gray-200 peer-checked:bg-sky-600 peer-checked:border-sky-600 peer-checked:text-white cursor-pointer' }}">
+                                    {{ $seat->seat_number }}
+                                </div>
                             </label>
                         </div>
-                    @endforeach
+                    @endforeach     
                 </div>
-                
-                <button type="submit" class="mt-6 text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">Confirm</button>
+
+                <div class="flex items-center mt-6">
+                    <button type="submit"
+                        class="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                        Book Now
+                    </button>
+                </div>
             </form>
         </div>
     </section>

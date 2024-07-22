@@ -48,6 +48,7 @@
                             Studio Name
                         </label>
                         <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
+                        {{-- <input type="hidden" name="studio_id"> --}}
                     </div>
                 </div>
             
@@ -59,13 +60,17 @@
             
                 <div class="grid grid-cols-8 gap-4 mt-6">
                     @foreach ($seats as $seat)
-                        <div>
-                            <label for="seat_id_{{ $seat->id }}" class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" name="seat_id[]" id="seat_id_{{ $seat->id }}" value="{{ $seat->id }}" class="form-checkbox h-4 w-4 text-sky-700 border-gray-300 rounded focus:ring-sky-700">
-                                <span class="lg:ml-2 text-gray-900 dark:text-white">{{ $seat->seat_number }}</span>
-                            </label>
+                    <div>
+                        <label for="seat_id_{{ $seat->id }}" class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" name="seat_id[]" id="seat_id_{{ $seat->id }}" value="{{ $seat->id }}" class="sr-only peer">
+                            <div
+                            class="w-10 h-10 text-gray-800 font-bold flex items-center justify-center border border-gray-400 rounded-lg 'bg-gray-200 peer-checked:bg-sky-600 peer-checked:border-sky-600 peer-checked:text-white cursor-pointer'">
+                            {{ $seat->seat_number }}
                         </div>
-                    @endforeach
+                        </label>
+                    </div>
+                @endforeach
+                
                 </div>
             
                 <div class="px-3 py-2 my-6 text-xs font-bold text-center text-white bg-gray-500 rounded-lg">

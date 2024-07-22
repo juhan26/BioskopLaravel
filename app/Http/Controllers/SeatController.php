@@ -38,11 +38,11 @@ class SeatController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input('seat_id', []));
-        // $selectedSeats = $request->input('seat_id');
+        // dd($request->input('seat_id', []));
+        $selectedSeats = $request->input('seat_id');
 
-        // Seat::create($request->$selectedSeats);
-        // return redirect()->route('seat.index')->with('success','Seat Successfully Created');
+        Seat::create($request->all);
+        return redirect()->route('seat.index')->with('success','Seat Successfully Created');
     }
 
     /**

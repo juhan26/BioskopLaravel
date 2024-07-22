@@ -83,7 +83,7 @@ class BookingController extends Controller
             Booking::create($data);
         }
     // dd($data);
-        return redirect()->route('booking.index')->with('success', 'Booking created successfully.');
+        return redirect()->route('movies.index')->with('success', 'Booking movie successfully.');
     }
 
     /**

@@ -12,9 +12,13 @@ class Studio extends Model
 
     public function seats()
     {
-        return $this->belongsToMany(Seat::class, 'studio_seat', 'studio_id', 'seat_id');
+        return $this->hasMany(Seat::class);
     }
+    
     public function movies(){
+        return $this->hasMany(Movie::class);
+    }
+    public function showtime(){
         return $this->hasMany(Movie::class);
     }
 }
