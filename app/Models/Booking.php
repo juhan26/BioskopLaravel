@@ -11,18 +11,25 @@ class Booking extends Model
     protected $guarded = ['id'];
     protected $fillable = ['movie_id', 'seat_id', 'dateshowtime_id'];
 
-    public function seats(){
-        return $this->belongsTo(Seat::class, 'seat_id'); //
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
     }
-    public function dateshowtimes(){
-        return $this->belongsTo(Dateshowtime::class, 'dateshowtime_id'); //
+
+    public function dateshowtime()
+    {
+        return $this->belongsTo(Dateshowtime::class, 'dateshowtime_id');
     }
-    public function movie(){
-        return $this->belongsTo(Movie::class, 'movie_id'); //
+
+    public function seat()
+    {
+        return $this->belongsTo(Seat::class);
+        
+    }    public function studio(){
+        return $this->belongsTo(Studio::class, 'studio_id'); //
     }
-    public function booked_seats(){
-        return $this->hasMany(BookedSeat::class);
-    }
+    
+
 
 
 }
