@@ -17,7 +17,7 @@
             <div class="bg-white rounded-lg shadow-md p-5">
                 <h5 class="text-xl font-bold mb-2">{{ $studio->name }}</h5>
                 <div class="flex justify-between items-center">
-                    <a href="{{ route('studios.show', $studio->id) }}" class="bg-indigo-100 text-indigo-600 hover:bg-indigo-200 hover:text-indigo-900 font-semibold py-2 px-4 rounded border border-indigo-600 hover:border-indigo-900 transition-colors">Detail</a>
+                    <a href="{{ route('studios.show', $studio->id) }}" class="bg-indigo-100 text-indigo-600 hover:bg-indigo-200 hover:text-indigo-900 font-semibold py-2 px-4 rounded border border-indigo-600 hover:border-indigo-900 transition-colors mr-2 ">Detail</a>
                     <form action="{{ route('studios.destroy', $studio->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                         @csrf
                         @method('DELETE')

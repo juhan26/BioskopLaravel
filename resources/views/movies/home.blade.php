@@ -21,13 +21,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($movies as $movie)
                 <x-movie-card :movie="$movie" />
-                
             @endforeach
         </div>
-        
-
+    
         {{-- <div class="my-6">
             {{ $movies->appends(request()->only('sort'))->links() }}
         </div> --}}
     </section>
+    
 @endsection

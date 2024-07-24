@@ -12,7 +12,7 @@ class Dateshowtime extends Model
     {
         return $this->belongsTo(Date::class, 'date_id');
     }
-
+    
     public function showtime()
     {
         return $this->belongsTo(Showtime::class, 'showtime_id');

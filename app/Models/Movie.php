@@ -53,6 +53,9 @@ class Movie extends Model
         return $this->belongsTo(Studio::class, 'studio_id');
     }
 
+
+
+
     // public function bookings()
     // {
     //     return $this->hasOne(Booking::class);
@@ -92,7 +95,7 @@ class Movie extends Model
     {
         if ($search ?? false) {
             $query->where('title', 'like', '%' . $search . '%')->orWhere('genre' ,'LIKE', '%' . $search . '%');
-        } 
+        }
         
 
    

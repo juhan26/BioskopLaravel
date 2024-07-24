@@ -30,6 +30,8 @@ class BookingController extends Controller
             return !$seat->bookings->count();
         })->count();
 
+
+
         $bookedSeats = $seats->count();
         // dd($bookings->pluck('movie'));
         return view('bookings.index', compact('bookings', 'availableSeats', 'seats', 'bookedSeats'));
@@ -76,15 +78,6 @@ class BookingController extends Controller
      * Store a newly created resource in storage.
      */
 
-    //      public function showBooking($movieId, $showtimeId)
-    // {
-    //     $selectedMovie = Movie::find($movieId);
-    //     $selectedShowtime = Showtime::find($showtimeId);
-    //     $studio = $selectedShowtime->studio;
-    //     $seats = $studio->seats;
-
-    //     return view('bookings', compact('selectedMovie', 'selectedShowtime', 'seats'));
-    // }
 
     public function store(StoreBookingRequest $request)
     {
@@ -93,9 +86,9 @@ class BookingController extends Controller
 
         // Check if seat_id is an array
         if (is_array($request->seat_id)) {
-            // Loop through each seat_id
+
             foreach ($request->seat_id as $seat_id) {
-                // Create a new booking for each seat_id
+
                 $booking = Booking::create([
                     'movie_id' => $data['movie_id'],
                     'dateshowtime_id' => $data['dateshowtime_id'],
@@ -110,9 +103,9 @@ class BookingController extends Controller
         }
 
         // Load the related models for each booking
-        foreach ($bookings as $booking) {
-            $booking->load('movie', 'dateshowtime', 'seat');
-        }
+            foreach ($bookings as $booking) {
+                $booking->load('movie', 'dateshowtime', 'seat');
+            }
 
         // Prepare data for QR code
         $firstBooking = $bookings[0];
@@ -120,9 +113,9 @@ class BookingController extends Controller
 
         if ($firstBooking->movie && $showtimeData) {
             // Make sure start_time and end_time are properly handled
-            $showtimeDate = $showtimeData['date'] ?? 'N/A';
-            $showtimeStart = $showtimeData['start_time'] ?? 'N/A';
-            $showtimeEnd = $showtimeData['end_time'] ?? 'N/A';
+            $showtimeDate = $showtimeData['date'];
+            $showtimeStart = $showtimeData['start_time'];
+            $showtimeEnd = $showtimeData['end_time'];
 
             $seats = collect($bookings)->pluck('seat.seat_number');
             $ticketPrice = $firstBooking->movie->ticket_price;
@@ -148,13 +141,6 @@ class BookingController extends Controller
             return redirect()->route('movies.index')->with('error', 'Failed to load booking details.');
         }
     }
-
-
-
-
-
-
-
 
     public function showBookingDetails($bookingId)
     {

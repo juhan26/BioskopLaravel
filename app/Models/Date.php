@@ -26,7 +26,10 @@ class Date extends Model
     {
         return Carbon::parse($value)->format('l, j F Y');
     }
-
+    public function movies()
+    {
+        return $this->belongsTo(Movie::class, 'date_movie');
+    }
     /**
      * The attributes that should be cast.
      *
@@ -47,8 +50,4 @@ class Date extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    // public function movies(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Movie::class, 'date_movie');
-    // }
 }

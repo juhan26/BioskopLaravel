@@ -49,8 +49,8 @@ class MovieController extends Controller
         $sort = request()->input('sort');
 
         $movies = Movie::filter($title, $sort)
-            ->latest()
-            ->paginate(8);
+            ->latest();
+            // ->paginate(8);
         
 
         return view('movies.home', compact('movies'));
@@ -116,6 +116,7 @@ class MovieController extends Controller
     $studios = Studio::select(DB::raw('MIN(id) as id, name'))
         ->groupBy('name')
         ->get();
+        
         $existingStudioIds = Movie::pluck('studio_id')->toArray();
 
     return view('movies.edit', compact('movie', 'studios'));

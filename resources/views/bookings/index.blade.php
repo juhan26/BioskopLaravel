@@ -26,20 +26,28 @@
                             Date and Showtime:
                         </h3>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            {{ \Carbon\Carbon::parse($booking->dateshowtimes->date->date)->format('l, d F Y') }} {{ $booking->dateshowtimes->showtime->start_time }} - {{ $booking->dateshowtimes->showtime->end_time }}
+                            @if($booking->dateshowtimes && $booking->dateshowtimes->showtime)
+                                {{ \Carbon\Carbon::parse($booking->dateshowtimes->date)->format('l, d F Y') }} {{ \Carbon\Carbon::parse($booking->dateshowtimes->showtime->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($booking->dateshowtimes->showtime->end_time)->format('H:i') }}
+                            @else
+                                Showtime data not available
+                            @endif
                         </p>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Seat Numbers
                         </h3>
                        
                         <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                            {{ $booking->seats->seat_number }}
+                            @if($booking->seat)
+                                {{ $booking->seat->seat_number }}
+                            @else
+                                Seat data not available
+                            @endif
                         </span>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Price
                         </h3>
                         <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                           Rp. {{number_format($booking->movie->ticket_price) }}
+                           Rp. {{ number_format($booking->movie->ticket_price) }}
                         </span>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Available Seats
