@@ -3,7 +3,7 @@
 @section('content')
 <section id="booking-lists" class="p-6 max-w-screen-lg mx-auto">
     <h1 class="text-3xl font-bold mb-8 text-center">
-        Bookings
+        History Bookings
     </h1>
 
     <div class="w-full lg:w-1/2 lg:p-2 mb-4 lg:mb-0">
@@ -26,22 +26,14 @@
                             Date and Showtime:
                         </h3>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            @if($booking->dateshowtimes && $booking->dateshowtimes->showtime)
-                                {{ \Carbon\Carbon::parse($booking->dateshowtimes->date)->format('l, d F Y') }} {{ \Carbon\Carbon::parse($booking->dateshowtimes->showtime->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($booking->dateshowtimes->showtime->end_time)->format('H:i') }}
-                            @else
-                                Showtime data not available
-                            @endif
+                            {{ \Carbon\Carbon::parse($booking->dateshowtime->date->date)->format('l, d F Y') }} {{ $booking->dateshowtime->showtime->start_time }} - {{ $booking->dateshowtime->showtime->end_time }}
                         </p>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Seat Numbers
                         </h3>
                        
                         <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                            @if($booking->seat)
-                                {{ $booking->seat->seat_number }}
-                            @else
-                                Seat data not available
-                            @endif
+                            {{ $booking->seat->seat_number }}
                         </span>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                             Price
