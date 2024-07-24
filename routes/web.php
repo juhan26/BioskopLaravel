@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DateController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ShowtimeController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -42,8 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     
     Route::resource('movies', MovieController::class);
-    Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
-    Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
+    // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
+    // Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
     
 
     // Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
@@ -59,6 +61,7 @@ Route::middleware('auth')->group(function () {
     // Route::post('/bookings/{movie}/{date}/{showtime}', [BookingController::class, 'store'])->name('bookings.store');
 
     // Showtimes(Sano)
+    Route::resource('showtimes', ShowtimeController::class);
     Route::get('/showtimes', [App\Http\Controllers\ShowtimeController::class, 'index'])->name('showtimes.index');
     Route::get('/showtimes/create', [App\Http\Controllers\ShowtimeController::class, 'create'])->name('showtimes.create');
     Route::post('/showtimes', [App\Http\Controllers\ShowtimeController::class,'store'])->name('showtimes.store');
@@ -69,6 +72,7 @@ Route::middleware('auth')->group(function () {
 
 
     //Date(Sano)
+    Route::resource('date', DateController::class);
     Route::get('/date',[App\Http\Controllers\DateController::class, 'index'])->name('date.index');
     Route::get('/date/create',[App\Http\Controllers\DateController::class, 'create'])->name('date.create');
     Route::post('/date',[App\Http\Controllers\DateController::class,'store'])->name('date.store');
@@ -95,7 +99,7 @@ Route::middleware('auth')->group(function () {
     //Bookings(sano)
     Route::get('/booking', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
     Route::get('/booking/create', [App\Http\Controllers\BookingController::class, 'create'])->name('booking.create');
-    Route::get('/bookings/create/{studioId}', 'BookingController@create');
+    // Route::get('/bookings/create/{studioId}', 'BookingController@create');
     Route::post('/booking/store', [App\Http\Controllers\BookingController::class,'store'])->name('booking.store');
     Route::get('/booking/edit/{booking}', [App\Http\Controllers\BookingController::class, 'edit'])->name('booking.edit');
     Route::put('/booking/update/{booking}', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
