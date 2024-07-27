@@ -11,7 +11,7 @@ The Cinema Tix is a movie ticket booking web application developed to enhance th
 This project uses a MySQL database to store and manage data powered by [dbdocs.io](https://dbdocs.io/).
 
 
-## Some Features
+## Features
 
 <img width="1439" alt="Screenshot 2024-07-27 at 09 28 32" src="https://github.com/user-attachments/assets/cb8ca4f2-e9b2-47b7-ad31-e167af134358">
 <img width="1440" alt="Screenshot 2024-07-27 at 09 28 18" src="https://github.com/user-attachments/assets/ebd6a0a8-06cb-468a-9a0b-f16ce3042eec">
