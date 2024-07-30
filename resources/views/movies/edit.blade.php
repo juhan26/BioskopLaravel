@@ -39,15 +39,14 @@
             <form action="{{ route('movies.update', $movie->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-
                 <div class="mb-4">
                     <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                    <input type="text" name="title" id="title" value="{{ old('title', $movie->title) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
+                    <input type="text" name="title" id="title"  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('title', $movie->title) == "" ? $movie->title : old('title', $movie->title) }}">
                 </div>
 
                 <div class="mb-4">
                     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea name="description" id="description" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >{{ old('description', $movie->description) }}</textarea>
+                    <textarea name="description" id="description" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >{{ old('description', $movie->description) == "" ? $movie->description : old('description', $movie->description)}}</textarea>
                 </div>
 
                 <div class="mb-4">
@@ -57,7 +56,7 @@
                         <img src="{{ asset('storage/' . $movie->poster_url) }}" alt="Current Poster" class="h-32 w-auto mb-4">
                     </div>
                 @endif
-                    <input type="file" name="poster_url" id="poster_url" class="mt-1 block ml-4 pr-5 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" value="{{ old('poster_url') }}">
+                    <input type="file" name="poster_url" id="poster_url" class="mt-1 block ml-4 pr-5 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" value="{{ old('poster_url', $movie->poster_url) == "" ? $movie->poster_url : old('poster_url', $movie->poster_url)}}">
                 </div>
                 
 
@@ -68,7 +67,7 @@
 
                 <div class="mb-4">
                     <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
-                    <input type="text" name="genre" id="genre" value="{{ old('genre', $movie->genre) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
+                    <input type="text" name="genre" id="genre" value="{{ old('genre', $movie->genre) == "" ? $movie->genre : old('genre', $movie->genre) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 </div>
 
                 <div class="mb-4">

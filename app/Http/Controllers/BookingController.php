@@ -25,8 +25,8 @@ class BookingController extends Controller
         $bookings = Booking::with('movie')->get();
         $seats = Seat::all();
 
-        // Menghitung kursi yang tersedia
-        $availableSeats = $seats->filter(function ($seat) {
+       
+        $availableSeats = $seats->filter(function ($seat) {  // Menghitung kursi yang tersedia
             return !$seat->bookings->count();
         })->count();
 
@@ -59,7 +59,7 @@ class BookingController extends Controller
             ->toArray();
 
         // Filter kursi yang belum ter-booking
-        $availableSeats = $seats->filter(function ($seat) use ($bookedSeats) {
+            $availableSeats = $seats->filter(function ($seat) use ($bookedSeats) {
             return !in_array($seat->id, $bookedSeats);
         });
 
@@ -80,6 +80,7 @@ class BookingController extends Controller
 
 
     public function store(StoreBookingRequest $request)
+
     {
         $data = $request->validated();
         $bookings = [];
@@ -103,9 +104,9 @@ class BookingController extends Controller
         }
 
         // Load the related models for each booking
-            foreach ($bookings as $booking) {
-                $booking->load('movie', 'dateshowtime', 'seat');
-            }
+        foreach ($bookings as $booking) {
+            $booking->load('movie', 'dateshowtime', 'seat');
+        }
 
         // Prepare data for QR code
         $firstBooking = $bookings[0];
@@ -113,9 +114,9 @@ class BookingController extends Controller
 
         if ($firstBooking->movie && $showtimeData) {
             // Make sure start_time and end_time are properly handled
-            $showtimeDate = $showtimeData['date'];
-            $showtimeStart = $showtimeData['start_time'];
-            $showtimeEnd = $showtimeData['end_time'];
+            $showtimeDate = $showtimeData['date'] ?? 'N/A';
+            $showtimeStart = $showtimeData['start_time'] ?? 'N/A';
+            $showtimeEnd = $showtimeData['end_time'] ?? 'N/A'; 
 
             $seats = collect($bookings)->pluck('seat.seat_number');
             $ticketPrice = $firstBooking->movie->ticket_price;
@@ -142,23 +143,23 @@ class BookingController extends Controller
         }
     }
 
-    public function showBookingDetails($bookingId)
-    {
-        $booking = Booking::find($bookingId);
-        $selectedMovie = $booking->movie;
-        $selectedShowtime = $booking->showtime;
-        $seats = $booking->seats;
-        $availableSeats = Seat::where('is_booked', false)->get();
-        $total = $booking->total;
+     // public function showBookingDetails($bookingId)
+    // {
+    //     $booking = Booking::find($bookingId);
+    //     $selectedMovie = $booking->movie;
+    //     $selectedShowtime = $booking->showtime;
+    //     $seats = $booking->seats;
+    //     $availableSeats = Seat::where('is_booked', false)->get();
+    //     $total = $booking->total;
 
-        $qrCode = QrCode::create("Booking ID: $booking->id\nMovie: $selectedMovie->title\nShowtime: $selectedShowtime->date->date $selectedShowtime->showtime->start_time - $selectedShowtime->showtime->end_time\nSeats: " . $seats->pluck('seat_number')->implode(', '))
-            ->setSize(300);
+    //     $qrCode = QrCode::create("Booking ID: $booking->id\nMovie: $selectedMovie->title\nShowtime: $selectedShowtime->date->date $selectedShowtime->showtime->start_time - $selectedShowtime->showtime->end_time\nSeats: " . $seats->pluck('seat_number')->implode(', '))
+    //         ->setSize(300);
 
-        $writer = new PngWriter();
-        $qrCodeImage = base64_encode($writer->write($qrCode)->getString());
+    //     $writer = new PngWriter();
+    //     $qrCodeImage = base64_encode($writer->write($qrCode)->getString());
 
-        return view('booking.details', compact('selectedMovie', 'selectedShowtime', 'seats', 'availableSeats', 'total', 'qrCodeImage'));
-    }
+    //     return view('booking.details', compact('selectedMovie', 'selectedShowtime', 'seats', 'availableSeats', 'total', 'qrCodeImage'));
+    // }
 
     /**
      * Display the specified resource.

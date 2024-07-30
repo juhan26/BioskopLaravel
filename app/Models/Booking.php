@@ -9,7 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['movie_id', 'seat_id', 'dateshowtime_id'];
+    // protected $fillable = ['movie_id', 'seat_id', 'dateshowtime_id'];
 
     public function movie()
     {
@@ -25,8 +25,10 @@ class Booking extends Model
     {
         return $this->belongsTo(Seat::class);
         
-    }    public function studio(){
-        return $this->belongsTo(Studio::class, 'studio_id'); //
+    }    
+    public function studio()
+    {
+        return $this->belongsTo(Studio::class, 'studio_id');
     }
     
 

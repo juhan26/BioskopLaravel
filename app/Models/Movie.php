@@ -94,7 +94,7 @@ class Movie extends Model
     public function scopeFilter(Builder $query, ?string $search, ?string $genre): void
     {
         if ($search ?? false) {
-            $query->where('title', 'like', '%' . $search . '%')->orWhere('genre' ,'LIKE', '%' . $search . '%');
+            $query->where('title', 'like', '%' . $search . '%')->orWhere('genre', 'LIKE' ,'%' . $search . '%');
         }
         
 

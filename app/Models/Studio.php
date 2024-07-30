@@ -21,6 +21,11 @@ class Studio extends Model
     public function showtime(){
         return $this->hasMany(Movie::class);
     }
+    public function seatStudio(){
+        return $this->belongsTo(SeatStudio::class);
+    }
+
+
 
     
 }

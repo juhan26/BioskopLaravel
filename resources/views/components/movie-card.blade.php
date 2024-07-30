@@ -1,6 +1,6 @@
 <div class="relative max-w-xl bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
     <a href="{{ route('movies.show', $movie->id) }}"> 
-        <img class="rounded-t-lg w-full h-64 object-cover" src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}" />
+        <img class="rounded-t-lg w-full h-90 object-cover" src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}" />
     </a>
     
     <div class="p-6">
