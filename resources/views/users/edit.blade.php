@@ -7,7 +7,7 @@
         </h1>
         <form class="space-y-4 md:space-y-6" action="{{ route('users.update', $user) }}" method="POST">
             @csrf
-            @method('PATCH')
+        @method('PATCH')
 
             {{-- username --}}
             <div>

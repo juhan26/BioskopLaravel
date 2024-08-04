@@ -16,7 +16,7 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Date
-                    </th>
+                    </th>z
                     <th scope="col" class="px-6 py-3">
                        Showtime
                     </th>

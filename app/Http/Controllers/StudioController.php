@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudioRequest;
 use App\Http\Requests\UpdateStudioRequest;
 use App\Models\Seat;
+
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request as HttpRequest;
 
 class StudioController extends Controller
 {
@@ -18,7 +20,7 @@ class StudioController extends Controller
     {
         // Ambil semua data studio
         $studios = Studio::all();
-
+        
         // Array untuk menyimpan nama-nama studio yang sudah ada
         $existingStudios = [];
 

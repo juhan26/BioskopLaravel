@@ -21,6 +21,7 @@ class Movie extends Model
         'title',
         'description',
         'release_date',
+        'expired_date',
         'genre',
         'poster_url',
         'age_rating',
@@ -47,6 +48,10 @@ class Movie extends Model
     public function seats()
     {
         return $this->hasMany(Showtime::class);
+    }
+    public function moviestudios()
+    {
+        return $this->hasMany(Moviestudio::class);
     }
     public function studios()
     {
@@ -91,7 +96,7 @@ class Movie extends Model
     public function scopeFilter(Builder $query, ?string $search, ?string $genre): void
     {
         if ($search ?? false) {
-            $query->where('title', 'like', '%' . $search . '%')->orWhere('genre' ,'LIKE', '%' . $search . '%');
+            $query->where('title', 'like', '%' . $search . '%')->orWhere('genre' ,'LIKE', '%' . $search . '%')->orWhere('realese_date', '%' . $search . '%');
         } 
         
 

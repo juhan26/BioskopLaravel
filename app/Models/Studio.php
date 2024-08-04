@@ -14,6 +14,10 @@ class Studio extends Model
     {
         return $this->hasMany(Seat::class);
     }
+    public function moviestudios()
+    {
+        return $this->hasMany(Moviestudio::class);
+    }
     
     public function movies(){
         return $this->hasMany(Movie::class);
