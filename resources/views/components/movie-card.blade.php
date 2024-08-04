@@ -1,11 +1,11 @@
 <div class="relative max-w-xl bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
     <a href="{{ route('movies.show', $movie->id) }}"> 
-        <img class="rounded-t-lg w-full h-64 object-cover" src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}" />
+        <img class="rounded-t-lg w-full h-90 object-cover" src="{{ asset('storage/' . $movie->poster_url) }}" alt="{{ $movie->title }}" />
     </a>
     
     <div class="p-6">
         <a href="{{ route('movies.show', $movie->id) }}"> 
-            <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {{ mb_strimwidth($movie->title, 0, 30, '...') }}
             </h5>
         </a>

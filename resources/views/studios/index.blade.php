@@ -9,6 +9,7 @@
                 </a>
             </div>
         </div>
+        
     </section>
 
     <section id="studio-list" class="p-6 mx-auto max-w-7xl lg:p-8">

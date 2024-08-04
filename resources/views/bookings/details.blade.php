@@ -10,7 +10,7 @@
             </h5>
             <div class="flex flex-wrap my-3">
                 <p class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100"><strong>Showtime:</strong> {{ $showtimeDate }} {{ $showtimeStart }} - {{ $showtimeEnd }}</p>
-            </div>
+            </div>  
             <p class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100"><strong>Total:</strong> Rp.{{ number_format($totalPrice, 2) }}</p>
             <p class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100"><strong>Seats:</strong> {{ $seats }}</p>
             <div class="mt-3 flex justify-center">

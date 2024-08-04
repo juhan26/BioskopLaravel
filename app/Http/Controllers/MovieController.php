@@ -52,6 +52,7 @@ class MovieController extends Controller
             ->latest()
             ->paginate(8);
         
+        
 
         return view('movies.home', compact('movies'));
     }
@@ -61,8 +62,9 @@ class MovieController extends Controller
     $request->validate([
         'title' => 'required|string|max:255|unique:movies,title',
         'description' => 'required|string',
-        'poster_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'poster_url' => 'required|image|mimes:jpeg|max:2048',
         'release_date' => 'required|date',
+        'expired_date' => 'required|date',
         'genre' => 'required|string|max:255',
         'age_rating' => 'required|string|max:10',
         'ticket_price' => 'required|numeric|min:0',
@@ -76,6 +78,7 @@ class MovieController extends Controller
         'description' => $request->get('description'),
         'poster_url' => $imagePath,
         'release_date' => $request->get('release_date'),
+        'expired_date' => $request->get('expired_date'),
         'genre' => $request->get('genre'),
         'age_rating' => $request->get('age_rating'),
         'ticket_price' => $request->get('ticket_price'),

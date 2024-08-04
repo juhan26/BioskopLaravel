@@ -48,7 +48,8 @@ class BookingController extends Controller
 
         $studios = Studio::all();
 
-        // Dapatkan ID showtime yang dipilih
+       
+ // Dapatkan ID showtime yang dipilih
         $selectedShowtimeId = $request->input('showtime');
 
         // Dapatkan semua kursi yang telah dipesan untuk showtime dan film yang dipilih
@@ -56,11 +57,11 @@ class BookingController extends Controller
             ->pluck('seat_id')
             ->toArray();
 
-        // Filter kursi yang belum ter-booking
+
         $availableSeats = $seats->filter(function ($seat) use ($bookedSeats) {
             return !in_array($seat->id, $bookedSeats);
         });
-
+        
         $selectedShowtime = Dateshowtime::find($request->showtime);
         $selectedMoviePrice = $selectedShowtime->movies;
         $ticketPrice = $selectedMoviePrice->ticket_price;
@@ -156,23 +157,7 @@ class BookingController extends Controller
 
 
 
-    public function showBookingDetails($bookingId)
-    {
-        $booking = Booking::find($bookingId);
-        $selectedMovie = $booking->movie;
-        $selectedShowtime = $booking->showtime;
-        $seats = $booking->seats;
-        $availableSeats = Seat::where('is_booked', false)->get();
-        $total = $booking->total;
-
-        $qrCode = QrCode::create("Booking ID: $booking->id\nMovie: $selectedMovie->title\nShowtime: $selectedShowtime->date->date $selectedShowtime->showtime->start_time - $selectedShowtime->showtime->end_time\nSeats: " . $seats->pluck('seat_number')->implode(', '))
-            ->setSize(300);
-
-        $writer = new PngWriter();
-        $qrCodeImage = base64_encode($writer->write($qrCode)->getString());
-
-        return view('booking.details', compact('selectedMovie', 'selectedShowtime', 'seats', 'availableSeats', 'total', 'qrCodeImage'));
-    }
+    // 
 
     /**
      * Display the specified resource.
